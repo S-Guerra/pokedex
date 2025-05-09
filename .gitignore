@@ -1,0 +1,35 @@
+# Logs
+pokedex-app/logs/
+pokedex-app/*.log
+pokedex-app/npm-debug.log*
+pokedex-app/yarn-debug.log*
+pokedex-app/yarn-error.log*
+pokedex-app/pnpm-debug.log*
+pokedex-app/lerna-debug.log*
+
+# Node modules and build output
+pokedex-app/node_modules/
+**/node_modules/
+
+pokedex-app/dist/
+**/dist/
+
+pokedex-app/dist-ssr/
+pokedex-app/*.local
+
+# Environment files
+.env
+.env.*.local
+pokedex-app/.env
+pokedex-app/.env.*.local
+
+# Editor directories and files
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
