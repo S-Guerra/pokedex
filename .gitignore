@@ -33,3 +33,6 @@ pokedex-app/.env.*.local
 *.njsproj
 *.sln
 *.sw?
+
+py_scripts/
+pokemon-data/pokemon-pictures/
