@@ -8,7 +8,6 @@ export default function Pokedex() {
     return (
         <div className="pokedex">
             <LeftPanel />
-            <div className="hinge"></div>
             <RightPanel />
         </div>
     )
