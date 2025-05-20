@@ -1,8 +1,9 @@
-import './styles/App.scss'
+import "./styles/App.scss"
+import Pokedex from "./components/Pokedex.jsx"
 
 function App() {
   return (
-    <h1>Ici sera bientôt mon Pokédex</h1>
+    <Pokedex />
   )
 }
 
