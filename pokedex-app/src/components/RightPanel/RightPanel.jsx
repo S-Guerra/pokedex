@@ -1,17 +1,20 @@
-import React from "react"
-import "../../styles/layout/right-panel.scss"
+import React from "react";
+import "../../styles/layout/right-panel.scss";
 
-// Visual/functional layout of the right side
-export default function RightPanel() {
+export default function RightPanel({ isOpen, setIsOpen }) {
+    const toggleOpen = () => setIsOpen(!isOpen);
+
     return (
         <div className="panel-right-wrapper">
             <div className="placeholder"></div>
-            <div className="top">
-                <div className="red"></div>
-                <div className="sideways"></div>
-                <div className="transparent"></div>
+            <div className={`book-cover ${isOpen ? "open" : ""}`} onClick={toggleOpen}>
+                <div className="top">
+                    <div className="red"></div>
+                    <div className="sideways"></div>
+                    <div className="transparent"></div>
+                </div>
+                <div className="panel right"></div>
             </div>
-            <div className="panel right"></div>
         </div>
-    )
+    );
 }

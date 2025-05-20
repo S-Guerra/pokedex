@@ -3,9 +3,9 @@ import Hinge from "./Hinge.jsx"
 import "../../styles/layout/left-panel.scss"
 
 // Visual/functional layout of the left side
-export default function LeftPanel() {
+export default function LeftPanel({ isOpen }) {
     return (
-        <div className="panel left">
+        <div className={`panel left ${isOpen ? "open" : "closed"}`}>
             <div className="top">
                 <div className="red left"></div>
                 <div>

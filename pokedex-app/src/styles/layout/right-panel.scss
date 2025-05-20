@@ -1,37 +1,70 @@
 .panel-right-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    perspective: 3500px;
 
     .placeholder {
-        width: 300px;
-        height: 60px;
+        width: 290px;
+        height: 62px;
         background-color: transparent;
     }
 
-    .panel.right {
-        height: 330px;
-    }
-
-    .top {
+    .book-cover {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transform-origin: left center;
+        transform: rotateY(180deg);
+        transition: transform 1s ease-in-out;
 
-        .red {
-            width: 100px;
-            height: 60px;
+        .top {
+            display: flex;
+
+            .red {
+                width: 90px;
+                height: 60px;
+                background-color: red;
+                margin-left: 10px;
+                transition: margin-left 0.5s ease-out 0.5s;
+            }
+
+            .sideways {
+                width: 100px;
+                height: 60px;
+                background: linear-gradient(45deg, red 50%, transparent 50%);
+            }
+
+            .transparent {
+                width: 100px;
+                height: 60px;
+                background-color: transparent;
+            }
+        }
+
+        .panel.right {
+            width: 290px;
+            height: 328px;
+            border-bottom-right-radius: 15px;
             background-color: red;
+            margin-left: 10px;
+            transition: margin-left 0.5s ease-out 0.5s;
         }
 
-        .sideways {
-            width: 100px;
-            height: 60px;
-            background: linear-gradient(45deg, red 50%, transparent 50%)
-        }
+        &.open {
+            transform: rotateY(360deg);
 
-        .transparent {
-            width: 100px;
-            height: 60px;
-            background-color: transparent;
+            .top {
+                .red {
+                    margin-left: 0;
+                }
+            }
+
+            .panel.right {
+                margin-left: 0;
+            }
         }
     }
 }
