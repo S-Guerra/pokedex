@@ -1,6 +1,10 @@
 import React from "react"
 import Hinge from "./Hinge.jsx"
 import "../../styles/layout/left-panel.scss"
+import DisplayScreen from "./DisplayScreen.jsx"
+import MiscLights from "./miscLights.jsx"
+import NamePlate from "./NamePlate.jsx"
+import ControlsPanel from "./ControlsPanel.jsx"
 
 // Visual/functional layout of the left side
 export default function LeftPanel({ isOpen }) {
@@ -14,7 +18,11 @@ export default function LeftPanel({ isOpen }) {
                         <div className="sideways"></div>
                     </div>
                 </div>
+                <MiscLights />
             </div>
+            <DisplayScreen />
+            <NamePlate />
+            <ControlsPanel />
             <Hinge />
         </div>
     )

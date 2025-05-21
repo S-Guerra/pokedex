@@ -18,13 +18,55 @@
         .red.right {
             width: 202px;
             height: 58px;
-            background-color: red;
+            background: linear-gradient(90deg, red 96%, #b60000 99%);
         }
 
         .sideways {
             width: 100px;
             height: 60px;
             background: linear-gradient(135deg, red 50%, transparent 50%);
+        }
+
+        .lights-wrapper {
+            position: absolute;
+            display: flex;
+            justify-content: space-evenly;
+            width: 170px;
+            height: 118px;
+
+            .big-blue {
+                width: 50px;
+                height: 50px;
+                border: 8px solid #cccccc;
+                margin: 26px 20px;
+                border-radius: 50%;
+                background-color: #008cff;
+            }
+
+            .small-wrapper {
+                display: flex;
+                justify-content: space-between;
+                width: 60px;
+                padding: 12px 0;
+
+                .small {
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+
+                    &.r {
+                        background-color: #8f0000;
+                    }
+
+                    &.y {
+                        background-color: #ffd000;
+                    }
+
+                    &.g {
+                        background-color: green;
+                    }
+                }
+            }
         }
     }
 

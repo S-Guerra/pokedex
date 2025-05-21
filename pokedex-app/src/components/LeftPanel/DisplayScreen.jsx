@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 // Main screen showing Pokémon sprite
 export default function DisplayScreen() {
