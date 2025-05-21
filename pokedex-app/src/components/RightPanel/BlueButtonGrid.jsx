@@ -1,10 +1,19 @@
-import React from 'react'
+import React from "react"
 
 // Blue button panel
 export default function BlueButtonGrid() {
     return (
-        <div>
-
+        <div className="blue">
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
         </div>
     )
 }

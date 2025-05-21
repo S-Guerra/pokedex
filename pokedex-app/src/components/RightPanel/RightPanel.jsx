@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "../../styles/layout/right-panel.scss";
+import DescriptionScreen from "./DescriptionScreen";
+import BlueButtonGrid from "./BlueButtonGrid";
+import TypeScreens from "./TypeScreens";
+import YellowButton from "./YellowButton";
 
 export default function RightPanel({ isOpen, setIsOpen }) {
     const [bookState, setBookState] = useState("")
@@ -23,7 +27,12 @@ export default function RightPanel({ isOpen, setIsOpen }) {
                     <div className="yellow-arrow"></div>
                     <div className="bottom-texture"></div>
                 </div>
-                <div className="panel right inner"></div>
+                <div className="panel right inner">
+                    <DescriptionScreen />
+                    <BlueButtonGrid />
+                    <YellowButton />
+                    <TypeScreens />
+                </div>
             </div>
         </div>
     );
