@@ -23,23 +23,24 @@
         .top {
             display: flex;
 
+            .red,
+            .sideways,
+            .transparent {
+                height: 60px;
+            }
+
             .red {
                 width: 90px;
-                height: 60px;
                 background-color: red;
-                margin-left: 10px;
-                transition: margin-left 0.5s ease-out 0.5s;
             }
 
             .sideways {
                 width: 100px;
-                height: 60px;
                 background: linear-gradient(45deg, red 50%, transparent 50%);
             }
 
             .transparent {
                 width: 100px;
-                height: 60px;
                 background-color: transparent;
             }
         }
@@ -49,22 +50,51 @@
             height: 328px;
             border-bottom-right-radius: 15px;
             background-color: red;
-            margin-left: 10px;
-            transition: margin-left 0.5s ease-out 0.5s;
+        }
+
+        &:not(.open):not(.closed) {
+
+            .top .red,
+            .panel.right {
+                margin-left: 10px;
+            }
         }
 
         &.open {
             transform: rotateY(360deg);
 
-            .top {
-                .red {
-                    margin-left: 0;
-                }
-            }
-
+            .top .red,
             .panel.right {
-                margin-left: 0;
+                animation: openAnim 0.5s forwards;
             }
         }
+
+        &.closed {
+
+            .top .red,
+            .panel.right {
+                animation: closeAnim 0.5s linear 0.5s forwards;
+            }
+        }
+    }
+}
+
+@keyframes openAnim {
+    from {
+        margin-left: 10px;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
+@keyframes closeAnim {
+    from {
+        margin-left: 0;
+    }
+
+    to {
+        margin-left: 10px;
     }
 }
