@@ -3,7 +3,6 @@ import Hinge from "./Hinge.jsx"
 import "../../styles/layout/left-panel.scss"
 import DisplayScreen from "./DisplayScreen.jsx"
 import MiscLights from "./miscLights.jsx"
-import NamePlate from "./NamePlate.jsx"
 import ControlsPanel from "./ControlsPanel.jsx"
 
 // Visual/functional layout of the left side
@@ -20,9 +19,10 @@ export default function LeftPanel({ isOpen }) {
                 </div>
                 <MiscLights />
             </div>
-            <DisplayScreen />
-            <NamePlate />
-            <ControlsPanel />
+            <div className="content">
+                <DisplayScreen />
+                <ControlsPanel />
+            </div>
             <Hinge />
         </div>
     )
