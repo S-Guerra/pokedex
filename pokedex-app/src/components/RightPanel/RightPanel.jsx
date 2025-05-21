@@ -13,13 +13,17 @@ export default function RightPanel({ isOpen, setIsOpen }) {
     return (
         <div className="panel-right-wrapper">
             <div className="placeholder"></div>
-            <div className={`book-cover ${bookState}`} onClick={toggleOpen}>
+            <div className={`cover ${bookState}`} onClick={toggleOpen}>
                 <div className="top">
                     <div className="red"></div>
                     <div className="sideways"></div>
                     <div className="transparent"></div>
                 </div>
-                <div className="panel right"></div>
+                <div className="panel right outer">
+                    <div className="yellow-arrow"></div>
+                    <div className="bottom-texture"></div>
+                </div>
+                <div className="panel right inner"></div>
             </div>
         </div>
     );

@@ -11,7 +11,7 @@
         background-color: transparent;
     }
 
-    .book-cover {
+    .cover {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -50,6 +50,37 @@
             height: 328px;
             border-bottom-right-radius: 15px;
             background-color: red;
+            z-index: 3;
+
+            .yellow-arrow {
+                position: relative;
+                top: 145px;
+                left: 260px;
+                width: 0;
+                height: 0;
+                border-top: 20px solid transparent;
+                border-right: 20px solid transparent;
+                border-bottom: 20px solid transparent;
+                border-left: 20px solid #ffd000;
+            }
+
+            .bottom-texture {
+                position: relative;
+                top: 240px;
+                left: 32%;
+                width: 100px;
+                height: 10px;
+                border-radius: 5px;
+                background-color: #c00000;
+            }
+
+            &.inner {
+                position: absolute;
+                top: 60px;
+                z-index: 1;
+                transition: z-index;
+                transition-delay: 0.5s;
+            }
         }
 
         &:not(.open):not(.closed) {
@@ -66,6 +97,10 @@
             .top .red,
             .panel.right {
                 animation: openAnim 0.5s forwards;
+
+                &.inner {
+                    z-index: 3;
+                }
             }
         }
 
@@ -74,6 +109,11 @@
             .top .red,
             .panel.right {
                 animation: closeAnim 0.5s linear 0.5s forwards;
+
+
+                &.inner {
+                    z-index: 1;
+                }
             }
         }
     }
