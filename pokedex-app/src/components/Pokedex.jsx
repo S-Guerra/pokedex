@@ -8,7 +8,7 @@ export default function Pokedex() {
     const [isRightOpen, setIsRightOpen] = useState(false);
 
     return (
-        <div className="pokedex">
+        <div className={`pokedex ${isRightOpen ? "open" : "closed"}`}>
             <LeftPanel isOpen={isRightOpen} />
             <RightPanel isOpen={isRightOpen} setIsOpen={setIsRightOpen} />
         </div>

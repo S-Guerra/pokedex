@@ -15,7 +15,7 @@ export default function RightPanel({ isOpen, setIsOpen }) {
     };
 
     return (
-        <div className="panel-right-wrapper">
+        <div className={`panel-right-wrapper ${bookState}`}>
             <div className="placeholder"></div>
             <div className={`cover ${bookState}`} onClick={toggleOpen}>
                 <div className="top">
