@@ -40,7 +40,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        cursor: pointer;
 
         .top {
             display: flex;
@@ -75,6 +74,10 @@
             background-color: red;
             z-index: 3;
 
+            &.outer {
+                cursor: pointer;
+            }
+
             .yellow-arrow {
                 position: relative;
                 top: 125px;
@@ -104,7 +107,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                transition: z-index;
+                transition-property: z-index;
                 transition-delay: 0.5s;
 
                 .screen {
@@ -236,6 +239,26 @@
             .panel.right {
                 margin-left: 10px;
             }
+        }
+    }
+
+    .toggle {
+        position: absolute;
+        top: 59.5%;
+        right: -122px;
+        padding: 12px;
+        border: none;
+        color: black;
+        background-color: transparent;
+        font-family: "Press Start 2P", system-ui;
+        letter-spacing: -1px;
+        cursor: pointer;
+        transform: rotateY(0deg);
+        transition-property: transform;
+        transition-delay: 0.5s;
+
+        &.closed {
+            transform: rotateY(180deg);
         }
     }
 }

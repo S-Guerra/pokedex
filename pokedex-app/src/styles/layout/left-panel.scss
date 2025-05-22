@@ -228,6 +228,10 @@
                 border: none;
                 background-color: #333333;
 
+                &:hover {
+                    z-index: 2;
+                }
+
                 &::before {
                     content: "";
                     position: absolute;
