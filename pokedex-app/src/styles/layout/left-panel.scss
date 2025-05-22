@@ -157,6 +157,168 @@
         }
     }
 
+    .control-panel {
+        display: flex;
+        justify-content: space-between;
+        width: 230px;
+        padding: 20px 0;
+
+        .black-button {
+            width: 35px;
+            height: 35px;
+            margin-top: 3px;
+            border-radius: 50%;
+            background-color: #333333;
+        }
+
+        .middle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90px;
+
+            .thingies {
+                display: flex;
+                padding: 0 5px;
+
+                .thingy {
+                    width: 37px;
+                    height: 5px;
+                    border-radius: 2.5px;
+
+                    &.red {
+                        margin-right: 26px;
+                        background-color: red;
+                    }
+
+                    &.blue {
+                        background-color: #0066ff;
+                    }
+                }
+            }
+
+            .name-plate {
+                width: 90px;
+                height: 50px;
+                padding: 3px;
+                border: 1px solid black;
+                border-radius: 7px;
+                color: black;
+                background-color: #95ff95;
+                font-family: "Press Start 2P", system-ui;
+                font-size: 9px;
+                line-height: 48px;
+                letter-spacing: -1px;
+                text-align: center;
+            }
+        }
+
+        .d-pad {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            margin: 30px;
+            background-color: #333333;
+
+            button {
+                position: absolute;
+                width: 22px;
+                height: 22px;
+                padding: 0;
+                border: none;
+                background-color: #333333;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                }
+
+                .d-dot {
+                    width: 6px;
+                    height: 6px;
+                    margin: 8px;
+                    border-radius: 50%;
+                    background-color: black;
+                }
+            }
+
+            button:active {
+                background-color: #777777;
+
+                .d-dot {
+                    background-color: #444444;
+                }
+            }
+
+            .d-top {
+                top: -22px;
+                left: 1px;
+
+                &::before {
+                    top: 100%;
+                    left: -1px;
+                    border-width: 12px 12px 0 12px;
+                    border-color: #333333 transparent transparent transparent;
+                }
+
+                &:active::before {
+                    border-color: #777777 transparent transparent transparent;
+                }
+            }
+
+            .d-right {
+                top: 1px;
+                right: -22px;
+
+                &::before {
+                    top: -1px;
+                    left: -12px;
+                    border-width: 12px 12px 12px 0;
+                    border-color: transparent #333333 transparent transparent;
+                }
+
+                &:active::before {
+                    border-color: transparent #777777 transparent transparent;
+                }
+            }
+
+            .d-bottom {
+                bottom: -22px;
+                left: 1px;
+
+                &::before {
+                    bottom: 100%;
+                    left: -1px;
+                    border-width: 0 12px 12px 12px;
+                    border-color: transparent transparent #333333 transparent;
+                }
+
+                &:active::before {
+                    border-color: transparent transparent #777777 transparent;
+                }
+            }
+
+            .d-left {
+                top: 1px;
+                left: -22px;
+
+                &::before {
+                    top: -1px;
+                    right: -12px;
+                    border-width: 12px 0 12px 12px;
+                    border-color: transparent transparent transparent #333333;
+                }
+
+                &:active::before {
+                    border-color: transparent transparent transparent #777777;
+                }
+            }
+        }
+    }
+
     .hinge {
         position: absolute;
         bottom: 0;
