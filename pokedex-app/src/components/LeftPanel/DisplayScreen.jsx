@@ -9,7 +9,7 @@ export default function DisplayScreen() {
                 <div className="display-light"></div>
             </div>
             <div className="display-screen">
-                <img src="" alt="" />
+                <img src="./img/path" alt="Un joli Pokémon" />
             </div>
             <div className="display-bottom">
                 <button></button>

@@ -1,6 +1,5 @@
 import React from "react"
 import Hinge from "./Hinge.jsx"
-import "../../styles/layout/left-panel.scss"
 import DisplayScreen from "./DisplayScreen.jsx"
 import MiscLights from "./miscLights.jsx"
 import ControlsPanel from "./ControlsPanel.jsx"

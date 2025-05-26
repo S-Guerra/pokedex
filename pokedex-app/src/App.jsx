@@ -1,4 +1,3 @@
-import "./styles/App.scss"
 import Pokedex from "./components/Pokedex.jsx"
 
 function App() {

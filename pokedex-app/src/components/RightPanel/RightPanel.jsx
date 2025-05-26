@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/layout/right-panel.scss";
 import DescriptionScreen from "./DescriptionScreen";
 import BlueButtonGrid from "./BlueButtonGrid";
 import TypeScreens from "./TypeScreens";
 import YellowButton from "./YellowButton";
 
 export default function RightPanel({ isOpen, setIsOpen }) {
-    const [bookState, setBookState] = useState("")
+    const [bookState, setBookState] = useState("");
+    const [labelState, setLabelState] = useState("closed");
     const [label, setLabel] = useState("Ouvrir >");
 
     const toggleOpen = () => {
         const newIsOpen = !isOpen;
         setIsOpen(newIsOpen);
         setBookState(newIsOpen ? "open" : "closed");
+        setLabelState(newIsOpen ? "open" : "closed");
     };
 
     useEffect(() => {
@@ -36,14 +37,14 @@ export default function RightPanel({ isOpen, setIsOpen }) {
                     <div className="yellow-arrow"></div>
                     <div className="bottom-texture"></div>
                 </div>
-                <div className="panel right inner">
+                <div className="panel right inner" >
                     <DescriptionScreen />
                     <BlueButtonGrid />
                     <YellowButton />
                     <TypeScreens />
                 </div>
             </div>
-            <button className={`toggle ${bookState}`} onClick={toggleOpen}>{label}</button>
+            <button className={`toggle ${labelState}`} onClick={toggleOpen}>{label}</button>
         </div>
     );
 }
