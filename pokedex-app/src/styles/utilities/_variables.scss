@@ -1,28 +1,41 @@
 // Primary Colors
-$red-main: #da0000;
-$red-dark: #8f0000;
+// Red
+$red-main: #ff0000;
+$red-main-dark: #da0000;
 $red-deep: #b60000;
+$red-glowest: #ff6a6a;
 $red-glow: #d33;
+$red-dark: #8f0000;
 $red-shadow: #3a0000;
+
+// Purple
+$purple-dark: #342555;
+$purple-light: #a092c8;
 
 // Blue
 $blue-main: #008cff;
 $blue-light: #66c7ff;
 $blue-dark: #004c99;
+$blue-thingy: #0066ff;
 
 // Yellow
-$yellow-main: #ffd000;
 $yellow-light: #ffe066;
+$yellow-main: #ffd000;
 $yellow-shadow: #b39200;
 
 // Green
-$green-main: #00c800;
 $green-light: #66ff66;
+$green-main: #00c800;
 $green-dark: #006600;
 
-// Grays
+// White - Grays - Black
+$white: #ffffff;
+$white-opacity: #ffffffde;
 $gray-light: #cccccc;
+$gray-dark-active: #777777;
+$black-active: #444444;
 $gray-dark: #333333;
+$black: #000000;
 
 // Accent
 $display-screen: #95ff95;

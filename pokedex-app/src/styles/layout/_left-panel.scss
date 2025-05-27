@@ -1,8 +1,10 @@
+@use "../utilities/variables" as *;
+
 .panel.left {
     position: relative;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
-    background-color: #da0000;
+    background-color: $red-main-dark;
 
     .top {
         display: flex;
@@ -11,19 +13,19 @@
             width: 98px;
             height: 118px;
             border-top-left-radius: 15px;
-            background-color: red;
+            background-color: $red-main
         }
 
         .red.right {
             width: 202px;
             height: 58px;
-            background: linear-gradient(90deg, red 96%, #b60000 99%);
+            background: linear-gradient(90deg, $red-main 96%, $red-deep 99%);
         }
 
         .sideways {
             width: 100px;
             height: 60px;
-            background: linear-gradient(135deg, red 50%, transparent 50%);
+            background: linear-gradient(135deg, $red-main 50%, transparent 50%);
         }
 
         .lights-wrapper {
@@ -36,10 +38,10 @@
             .big-blue {
                 width: 50px;
                 height: 50px;
-                border: 8px solid #cccccc;
+                border: 8px solid $gray-light;
                 margin: 26px 20px;
                 border-radius: 50%;
-                background: radial-gradient(circle at 30% 30%, #ffffff 0%, #66c7ff 25%, #008cff 60%, #004c99 100%)
+                background: radial-gradient(circle at 30% 30%, $white 0%, $blue-light 25%, $blue-main 60%, $blue-dark 100%)
             }
 
             .small-wrapper {
@@ -54,15 +56,15 @@
                     border-radius: 50%;
 
                     &.r {
-                        background: radial-gradient(circle at 30% 30%, #ffffff 0%, #d33 25%, #8f0000 60%, #3a0000 100%);
+                        background: radial-gradient(circle at 30% 30%, $white 0%, $red-glow 25%, $red-dark 60%, $red-shadow 100%);
                     }
 
                     &.y {
-                        background: radial-gradient(circle at 30% 30%, #ffffff 0%, #ffe066 25%, #ffd000 60%, #b39200 100%);
+                        background: radial-gradient(circle at 30% 30%, $white 0%, $yellow-light 25%, $yellow-main 60%, $yellow-shadow 100%);
                     }
 
                     &.g {
-                        background: radial-gradient(circle at 30% 30%, #ffffff 0%, #66ff66 25%, #00c800 60%, #006600 100%);
+                        background: radial-gradient(circle at 30% 30%, $white 0%, $green-light 25%, $green-main 60%, $green-dark 100%);
                     }
                 }
             }
@@ -86,8 +88,8 @@
             align-items: center;
             width: 220px;
             height: 190px;
-            border: 1px solid #333333;
-            background-color: #cccccc;
+            border: 1px solid $gray-dark;
+            background-color: $gray-light;
 
             .display-top {
                 display: flex;
@@ -100,21 +102,21 @@
                     width: 6px;
                     height: 6px;
                     border-radius: 50%;
-                    background-color: red;
+                    background-color: $red-main;
                 }
             }
 
             .display-screen {
                 width: 165px;
                 height: 125px;
-                border: 1px solid #333333;
-                background-color: #95ff95;
+                border: 1px solid $gray-dark;
+                background-color: $display-screen;
                 text-align: center;
                 line-height: 165px;
 
                 img {
                     height: 100%;
-                    color: black;
+                    color: $black;
                 }
             }
 
@@ -129,7 +131,7 @@
                     height: 12px;
                     border: none;
                     border-radius: 50%;
-                    background-color: red;
+                    background-color: $red-main;
                 }
 
                 .speaker {
@@ -140,7 +142,7 @@
                         width: 30px;
                         height: 1px;
                         margin: 2px 0;
-                        background-color: black;
+                        background-color: $black;
                     }
                 }
             }
@@ -151,8 +153,8 @@
                 bottom: -9px;
                 width: 13px;
                 height: 25px;
-                background-color: #da0000;
-                border-right: 1px solid #333333;
+                background-color: $red-main-dark;
+                border-right: 1px solid $gray-dark;
                 transform: rotate(-45deg);
             }
         }
@@ -169,7 +171,7 @@
             height: 35px;
             margin-top: 3px;
             border-radius: 50%;
-            background-color: #333333;
+            background-color: $gray-dark;
         }
 
         .middle {
@@ -189,11 +191,11 @@
 
                     &.red {
                         margin-right: 26px;
-                        background-color: red;
+                        background-color: $red-main;
                     }
 
                     &.blue {
-                        background-color: #0066ff;
+                        background-color: $blue-thingy;
                     }
                 }
             }
@@ -202,10 +204,10 @@
                 width: 90px;
                 height: 50px;
                 padding: 3px;
-                border: 1px solid black;
+                border: 1px solid $black;
                 border-radius: 7px;
-                color: black;
-                background-color: #95ff95;
+                color: $black;
+                background-color: $display-screen;
                 font-family: "Press Start 2P", system-ui;
                 font-size: 9px;
                 line-height: 48px;
@@ -219,7 +221,7 @@
             width: 24px;
             height: 24px;
             margin: 22px;
-            background-color: #333333;
+            background-color: $gray-dark;
 
             button {
                 position: absolute;
@@ -227,7 +229,7 @@
                 height: 22px;
                 padding: 0;
                 border: none;
-                background-color: #333333;
+                background-color: $gray-dark;
 
                 &:hover {
                     z-index: 2;
@@ -246,15 +248,15 @@
                     height: 6px;
                     margin: 8px;
                     border-radius: 50%;
-                    background-color: black;
+                    background-color: $black;
                 }
             }
 
             button:active {
-                background-color: #777777;
+                background-color: $gray-dark-active;
 
                 .d-dot {
-                    background-color: #444444;
+                    background-color: $black-active;
                 }
             }
 
@@ -266,11 +268,11 @@
                     top: 100%;
                     left: -0.5px;
                     border-width: 12px 12px 0 12px;
-                    border-color: #333333 transparent transparent transparent;
+                    border-color: $gray-dark transparent transparent transparent;
                 }
 
                 &:active::before {
-                    border-color: #777777 transparent transparent transparent;
+                    border-color: $gray-dark-active transparent transparent transparent;
                 }
             }
 
@@ -282,11 +284,11 @@
                     top: -1px;
                     left: -11.5px;
                     border-width: 12px 12px 12px 0;
-                    border-color: transparent #333333 transparent transparent;
+                    border-color: transparent $gray-dark transparent transparent;
                 }
 
                 &:active::before {
-                    border-color: transparent #777777 transparent transparent;
+                    border-color: transparent $gray-dark-active transparent transparent;
                 }
             }
 
@@ -298,11 +300,11 @@
                     bottom: 100%;
                     left: -0.5px;
                     border-width: 0 12px 12px 12px;
-                    border-color: transparent transparent #333333 transparent;
+                    border-color: transparent transparent $gray-dark transparent;
                 }
 
                 &:active::before {
-                    border-color: transparent transparent #777777 transparent;
+                    border-color: transparent transparent $gray-dark-active transparent;
                 }
             }
 
@@ -314,11 +316,11 @@
                     top: -1px;
                     right: -11.5px;
                     border-width: 12px 0 12px 12px;
-                    border-color: transparent transparent transparent #333333;
+                    border-color: transparent transparent transparent $gray-dark;
                 }
 
                 &:active::before {
-                    border-color: transparent transparent transparent #777777;
+                    border-color: transparent transparent transparent $gray-dark-active;
                 }
             }
         }
@@ -330,14 +332,14 @@
         right: 0;
         width: 40px;
         height: 392px;
-        background: linear-gradient(90deg, #8f0000, #ff0000 35%, #ff6a6a, #ff0000, #b60000 99%);
+        background: linear-gradient(90deg, $red-dark, $red-main 35%, $red-glowest, $red-main, $red-deep 99%);
 
         .perspective {
             position: absolute;
             width: 100%;
             height: 10px;
             border-radius: 50%;
-            background: linear-gradient(90deg, #8f0000, #ff0000 35%, #ff6a6a, #ff0000, #b60000 99%);
+            background: linear-gradient(90deg, $red-dark, $red-main 35%, $red-glowest, $red-main, $red-deep 99%);
             transform: scaleY(1);
             transition: transform 0.6s ease-in-out;
         }

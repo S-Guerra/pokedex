@@ -1,3 +1,5 @@
+@use "../utilities/variables" as *;
+
 .panel-right-wrapper {
     position: absolute;
     left: 300px;
@@ -52,12 +54,12 @@
 
             .red {
                 width: 90px;
-                background-color: red;
+                background-color: $red-main;
             }
 
             .sideways {
                 width: 100px;
-                background: linear-gradient(45deg, red 50%, transparent 50%);
+                background: linear-gradient(45deg, $red-main 50%, transparent 50%);
             }
 
             .transparent {
@@ -71,34 +73,36 @@
             height: 288px;
             padding: 20px;
             border-bottom-right-radius: 15px;
-            background-color: red;
+            background-color: $red-main;
             z-index: 3;
 
             &.outer {
                 cursor: pointer;
+
+                .yellow-arrow {
+                    position: relative;
+                    top: 125px;
+                    left: 240px;
+                    width: 0;
+                    height: 0;
+                    border-top: 20px solid transparent;
+                    border-right: 20px solid transparent;
+                    border-bottom: 20px solid transparent;
+                    border-left: 20px solid $yellow-main;
+                }
+
+                .bottom-texture {
+                    position: relative;
+                    top: 240px;
+                    left: 32%;
+                    width: 100px;
+                    height: 10px;
+                    border-radius: 5px;
+                    background-color: $red-deep;
+                }
             }
 
-            .yellow-arrow {
-                position: relative;
-                top: 125px;
-                left: 240px;
-                width: 0;
-                height: 0;
-                border-top: 20px solid transparent;
-                border-right: 20px solid transparent;
-                border-bottom: 20px solid transparent;
-                border-left: 20px solid #ffd000;
-            }
 
-            .bottom-texture {
-                position: relative;
-                top: 240px;
-                left: 32%;
-                width: 100px;
-                height: 10px;
-                border-radius: 5px;
-                background-color: #c00000;
-            }
 
             &.inner {
                 position: absolute;
@@ -112,10 +116,10 @@
 
                 .screen {
                     padding: 3px;
-                    border: 1px solid black;
+                    border: 1px solid $black;
                     border-radius: 7px;
-                    color: black;
-                    background-color: #95ff95;
+                    color: $black;
+                    background-color: $display-screen;
                     font-family: "Press Start 2P", system-ui;
                 }
 
@@ -135,9 +139,9 @@
                     button {
                         width: 50px;
                         height: 35px;
-                        border: 1px solid #333333;
-                        color: black;
-                        background-color: #008cff;
+                        border: 1px solid $gray-dark;
+                        color: $black;
+                        background-color: $blue-main;
 
                         &:first-of-type {
                             border-top-left-radius: 7px;
@@ -171,18 +175,18 @@
                             width: 50px;
                             height: 35px;
                             border: none;
-                            background-color: #cccccc;
+                            background-color: $gray-light;
 
                             &:first-of-type {
-                                border: 1px solid #777777;
+                                border: 1px solid $gray-dark-active;
                                 border-top-left-radius: 7px;
                                 border-bottom-left-radius: 7px;
                             }
 
                             &:last-of-type {
-                                border-top: 1px solid #777777;
-                                border-right: 1px solid #777777;
-                                border-bottom: 1px solid #777777;
+                                border-top: 1px solid $gray-dark-active;
+                                border-right: 1px solid $gray-dark-active;
+                                border-bottom: 1px solid $gray-dark-active;
                                 border-top-right-radius: 7px;
                                 border-bottom-right-radius: 7px;
                             }
@@ -202,7 +206,7 @@
                                     width: 43px;
                                     height: 7px;
                                     border-radius: 3px;
-                                    background-color: #333333;
+                                    background-color: $gray-dark;
 
                                     &:first-of-type {
                                         margin-right: 7px;
@@ -214,7 +218,7 @@
                                 width: 30px;
                                 height: 30px;
                                 border-radius: 50%;
-                                background: radial-gradient(circle at 30% 30%, #ffffff 0%, #ffe066 25%, #ffd000 60%, #b39200 100%)
+                                background: radial-gradient(circle at 30% 30%, $white 0%, $yellow-light 25%, $yellow-main 60%, $yellow-shadow 100%)
                             }
                         }
                     }
@@ -248,7 +252,7 @@
         right: -122px;
         padding: 12px;
         border: none;
-        color: black;
+        color: $black;
         background-color: transparent;
         font-family: "Press Start 2P", system-ui;
         letter-spacing: -1px;
