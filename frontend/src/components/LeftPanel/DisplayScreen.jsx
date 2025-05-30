@@ -1,7 +1,7 @@
 import React from "react"
 
 // Main screen showing Pokémon sprite
-export default function DisplayScreen() {
+export default function DisplayScreen({ name, picURL }) {
     return (
         <div className="display">
             <div className="display-top">
@@ -9,7 +9,7 @@ export default function DisplayScreen() {
                 <div className="display-light"></div>
             </div>
             <div className="display-screen">
-                <img src="./img/path" alt="Un joli Pokémon" />
+                <img src={picURL} alt={`Le sprite de ${name} sur Pokémon Rouge Feu`} />
             </div>
             <div className="display-bottom">
                 <button></button>

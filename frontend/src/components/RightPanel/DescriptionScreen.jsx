@@ -1,10 +1,8 @@
 import React from "react"
 
 // Top screen: Pokémon description text
-export default function DescriptionScreen() {
+export default function DescriptionScreen({ description }) {
     return (
-        <p className="description screen">
-            Un texte décrivant les habitudes et caractéristiques de ce Pokémon.
-        </p>
+        <p className="description screen">{description}</p>
     )
 }

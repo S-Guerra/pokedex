@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Backend server for the Pokedex app",
   "main": "server.js",
-  "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
