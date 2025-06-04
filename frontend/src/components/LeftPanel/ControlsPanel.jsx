@@ -2,16 +2,16 @@ import React from "react"
 import NamePlate from "./NamePlate.jsx"
 
 // D-pad and buttons
-export default function ControlsPanel({ handleFetch, name }) {
+export default function ControlsPanel() {
     return (
         <div className="control-panel">
-            <button className="black-button" onClick={handleFetch}></button>
+            <button className="black-button" onClick={() => console.log("API call implemented soon...")}></button>
             <div className="middle">
                 <div className="thingies">
                     <div className="red thingy"></div>
                     <div className="blue thingy"></div>
                 </div>
-                <NamePlate name={name} />
+                <NamePlate />
             </div>
             <div className="d-pad">
                 <button className="d-top"><div className="d-dot"></div></button>

@@ -5,7 +5,7 @@ import MiscLights from "./miscLights.jsx"
 import ControlsPanel from "./ControlsPanel.jsx"
 
 // Visual/functional layout of the left side
-export default function LeftPanel({ isOpen, handleFetch, name, picURL }) {
+export default function LeftPanel({ isOpen, pokemonList }) {
     return (
         <div className={`panel left ${isOpen ? "open" : "closed"}`}>
             <div className="top">
@@ -19,8 +19,8 @@ export default function LeftPanel({ isOpen, handleFetch, name, picURL }) {
                 <MiscLights />
             </div>
             <div className="content">
-                <DisplayScreen name={name} picURL={picURL} />
-                <ControlsPanel handleFetch={handleFetch} name={name} />
+                <DisplayScreen pokemonList={pokemonList} />
+                <ControlsPanel />
             </div>
             <Hinge />
         </div>

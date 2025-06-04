@@ -110,9 +110,36 @@
                 width: 165px;
                 height: 125px;
                 border: 1px solid $gray-dark;
+                color: $black;
                 background-color: $display-screen;
-                text-align: center;
-                line-height: 165px;
+                font-family: "Press Start 2P", system-ui;
+                overflow: hidden;
+
+                &.list {
+                    padding: 5px;
+                    font-size: 10px;
+
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+
+                        tbody {
+                            display: block;
+                            max-height: calc(7 * 1.5em); // Limit height to ~7 rows
+
+                            tr {
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 2px 0;
+
+                                td {
+                                    flex: 1;
+                                    padding: 0 5px;
+                                }
+                            }
+                        }
+                    }
+                }
 
                 img {
                     height: 100%;
