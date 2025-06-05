@@ -1,11 +1,12 @@
-import React from "react"
+import React from "react";
 import Hinge from "./Hinge.jsx"
 import DisplayScreen from "./DisplayScreen.jsx"
 import MiscLights from "./miscLights.jsx"
 import ControlsPanel from "./ControlsPanel.jsx"
 
 // Visual/functional layout of the left side
-export default function LeftPanel({ isOpen, pokemonList }) {
+export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelectedIndex, selectedPokemon, setSelectedPokemon, handlePokemonSelection }) {
+
     return (
         <div className={`panel left ${isOpen ? "open" : "closed"}`}>
             <div className="top">
@@ -19,8 +20,8 @@ export default function LeftPanel({ isOpen, pokemonList }) {
                 <MiscLights />
             </div>
             <div className="content">
-                <DisplayScreen pokemonList={pokemonList} />
-                <ControlsPanel />
+                <DisplayScreen pokemonList={pokemonList} selectedIndex={selectedIndex} selectedPokemon={selectedPokemon} setSelectedPokemon={setSelectedPokemon} />
+                <ControlsPanel pokemonList={pokemonList} setSelectedIndex={setSelectedIndex} selectedPokemon={selectedPokemon} setSelectedPokemon={setSelectedPokemon} handlePokemonSelection={handlePokemonSelection} />
             </div>
             <Hinge />
         </div>

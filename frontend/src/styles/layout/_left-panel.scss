@@ -89,6 +89,7 @@
             width: 220px;
             height: 190px;
             border: 1px solid $gray-dark;
+            border-radius: 5px;
             background-color: $gray-light;
 
             .display-top {
@@ -108,42 +109,58 @@
 
             .display-screen {
                 width: 165px;
-                height: 125px;
+                height: 141px;
                 border: 1px solid $gray-dark;
+                border-radius: 4px;
                 color: $black;
                 background-color: $display-screen;
                 font-family: "Press Start 2P", system-ui;
+                font-size: 9px;
                 overflow: hidden;
 
                 &.list {
-                    padding: 5px;
-                    font-size: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    overflow: hidden;
 
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
+                    li {
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 3px 6px;
+                        border-top: 1px solid $black-active;
 
-                        tbody {
-                            display: block;
-                            max-height: calc(7 * 1.5em); // Limit height to ~7 rows
+                        &:first-of-type {
+                            border-top: none;
+                        }
 
-                            tr {
-                                display: flex;
-                                justify-content: space-between;
-                                padding: 2px 0;
+                        &.selected {
+                            color: $white;
+                            background-color: $black-active;
+                        }
 
-                                td {
-                                    flex: 1;
-                                    padding: 0 5px;
-                                }
-                            }
+                        .id {
+                            width: 45px;
+                            text-align: left;
+                        }
+
+                        .name {
+                            flex: 1;
+                            text-align: right;
                         }
                     }
                 }
 
-                img {
-                    height: 100%;
-                    color: $black;
+                &.sprite {
+                    display: flex;
+                    justify-content: center;
+
+                    img {
+                        height: 100%;
+                        color: $black;
+                    }
                 }
             }
 

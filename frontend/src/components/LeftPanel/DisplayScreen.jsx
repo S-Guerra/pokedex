@@ -1,30 +1,38 @@
 import React from "react"
 
-// Main screen showing Pokémon sprite
-export default function DisplayScreen({ pokemonList }) {
+export default function DisplayScreen({ pokemonList, selectedIndex, selectedPokemon, setSelectedPokemon }) {
+    const visibleCount = 7;
+    const half = Math.floor(visibleCount / 2);
+    const start = Math.max(0, selectedIndex - half);
+    const end = Math.min(pokemonList.length, start + visibleCount);
+    const visiblePokemon = pokemonList.slice(start, end);
+
+    const handleBack = () => setSelectedPokemon(null);
+
     return (
         <div className="display">
             <div className="display-top">
                 <div className="display-light"></div>
                 <div className="display-light"></div>
             </div>
-            {/* <div className="display-screen sprite">
-                <img src={picURL} alt={name} />
-            </div> */}
-            <div className="display-screen list">
-                <table>
-                    <tbody>
-                        {pokemonList.map((pokemon) => (
-                            <tr key={pokemon.id}>
-                                <td>{pokemon.id}</td>
-                                <td>{pokemon.name}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            {selectedPokemon ?
+                (<div className="display-screen sprite"><img src={selectedPokemon.picture_url} alt={selectedPokemon.name}></img></div>) :
+                (
+                    <ul className="display-screen list">
+                        {visiblePokemon.map((pokemon, idx) => {
+                            const isSelected = start + idx === selectedIndex;
+                            return (
+                                <li key={pokemon.id} className={isSelected ? "selected" : ""}>
+                                    <span className="id">{pokemon.id.toString().padStart(3, "0")}</span>
+                                    <span className="name">{pokemon.name}</span>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                )
+            }
             <div className="display-bottom">
-                <button></button>
+                <button onClick={handleBack}></button>
                 <div className="speaker">
                     <div className="slit"></div>
                     <div className="slit"></div>
@@ -34,5 +42,6 @@ export default function DisplayScreen({ pokemonList }) {
             </div>
             <div className="weird-shape"></div>
         </div>
-    )
+    );
 }
+

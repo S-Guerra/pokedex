@@ -6,7 +6,8 @@ import RightPanel from "./RightPanel/RightPanel.jsx"
 export default function Pokedex() {
     const [isRightOpen, setIsRightOpen] = useState(false);
     const [pokemonList, setPokemonList] = useState([]);
-    // const [selectedPokemon, setSelectedPokemon] = useState({});
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [selectedPokemon, setSelectedPokemon] = useState(null);
 
     useEffect(() => {
         fetch("http://localhost:3001/api/pokemon/all")
@@ -18,17 +19,20 @@ export default function Pokedex() {
             .catch(err => console.error("Failed to load Pokémon list:", err));
     }, []);
 
-    // const handlePokemonSelection = (id = 1) => {
-    //     fetch(`http://localhost:3001/api/pokemon/${id}`)
-    //         .then(res => res.json())
-    //         .then(data => setSelectedPokemon(data[0]))
-    //         .catch(err => console.error("Fetch error:", err));
-    // }
+    const handlePokemonSelection = async () => {
+        fetch(`http://localhost:3001/api/pokemon/${selectedIndex + 1}`)
+            .then(res => res.json())
+            .then(data => {
+                setSelectedPokemon(data);
+                console.log("Fetched Pokémon:", data);
+            })
+            .catch(err => console.error("Failed to load Pokémon:", err));
+    }
 
     return (
         <div className={`pokedex ${isRightOpen ? "open" : "closed"}`}>
-            <LeftPanel isOpen={isRightOpen} pokemonList={pokemonList} />
-            <RightPanel isOpen={isRightOpen} setIsOpen={setIsRightOpen} />
+            <LeftPanel isOpen={isRightOpen} pokemonList={pokemonList} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} selectedPokemon={selectedPokemon} setSelectedPokemon={setSelectedPokemon} handlePokemonSelection={handlePokemonSelection} />
+            <RightPanel isOpen={isRightOpen} setIsOpen={setIsRightOpen} selectedPokemon={selectedPokemon} />
         </div>
     )
 }

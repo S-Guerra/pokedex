@@ -33,7 +33,7 @@ app.get("/api/pokemon/:id", async (req, res) => {
     }
 
     try {
-        const query = "SELECT * FROM pokemon_gen1 WHERE id = $1";
+        const query = "SELECT name, picture_url, cry_url, description, type1, type2  FROM pokemon_gen1 WHERE id = $1";
         const { rows } = await pool.query(query, [id]);
 
         if (rows.length === 0) {

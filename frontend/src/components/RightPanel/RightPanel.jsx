@@ -4,7 +4,7 @@ import BlueButtonGrid from "./BlueButtonGrid";
 import TypeScreens from "./TypeScreens";
 import YellowButton from "./YellowButton";
 
-export default function RightPanel({ isOpen, setIsOpen }) {
+export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
     const [bookState, setBookState] = useState("");
     const [labelState, setLabelState] = useState("closed");
     const [label, setLabel] = useState("Ouvrir >");
@@ -38,10 +38,10 @@ export default function RightPanel({ isOpen, setIsOpen }) {
                     <div className="bottom-texture"></div>
                 </div>
                 <div className="panel right inner" >
-                    <DescriptionScreen />
+                    <DescriptionScreen selectedPokemon={selectedPokemon} />
                     <BlueButtonGrid />
                     <YellowButton />
-                    <TypeScreens />
+                    <TypeScreens selectedPokemon={selectedPokemon} />
                 </div>
             </div>
             <button className={`toggle ${labelState}`} onClick={toggleOpen}>{label}</button>
