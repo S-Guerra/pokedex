@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react";
-import DescriptionScreen from "./DescriptionScreen";
-import BlueButtonGrid from "./BlueButtonGrid";
-import TypeScreens from "./TypeScreens";
-import YellowButton from "./YellowButton";
 
 export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
     const [bookState, setBookState] = useState("");
@@ -38,10 +34,29 @@ export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
                     <div className="bottom-texture"></div>
                 </div>
                 <div className="panel right inner" >
-                    <DescriptionScreen selectedPokemon={selectedPokemon} />
-                    <BlueButtonGrid />
-                    <YellowButton />
-                    <TypeScreens selectedPokemon={selectedPokemon} />
+                    <p className="description screen">{selectedPokemon ? selectedPokemon.description : ""}</p>
+                    <div className="blue">
+                        {Array.from({ length: 10 }).map((_, i) => (
+                            <button key={i}></button>
+                        ))}
+                    </div>
+                    <div className="yellow-section">
+                        <div className="yellow-section-wrapper left">
+                            <button className="white-button"></button>
+                            <button className="white-button"></button>
+                        </div>
+                        <div className="yellow-section-wrapper right">
+                            <div className="black-thingy-wrapper">
+                                <div className="black-thingy"></div>
+                                <div className="black-thingy"></div>
+                            </div>
+                            <div className="yellow-button"></div>
+                        </div>
+                    </div>
+                    <div className="type-wrapper">
+                        <p className="type screen">{selectedPokemon ? selectedPokemon.type1 : ""}</p>
+                        <p className="type screen">{selectedPokemon ? selectedPokemon.type2 : ""}</p>
+                    </div>
                 </div>
             </div>
             <button className={`toggle ${labelState}`} onClick={toggleOpen}>{label}</button>
