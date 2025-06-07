@@ -25,6 +25,10 @@ export default function Pokedex() {
             .then(data => {
                 setSelectedPokemon(data);
                 console.log("Fetched Pokémon:", data);
+
+                console.log("Audio resource:", data.cry_url);
+                const audio = new Audio(data.cry_url);
+                audio.play().catch((err) => console.log("Audio error:", err));
             })
             .catch(err => console.error("Failed to load Pokémon:", err));
     }
