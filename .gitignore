@@ -35,4 +35,4 @@ frontend/.env.*.local
 *.sw?
 
 py_scripts/
-pokemon-data/pokemon-pictures/
+data/pokemon-pictures/
