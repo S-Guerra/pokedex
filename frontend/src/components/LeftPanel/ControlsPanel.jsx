@@ -5,11 +5,11 @@ import NamePlate from "./NamePlate.jsx"
 export default function ControlsPanel({ pokemonList, setSelectedIndex, selectedPokemon, handlePokemonSelection }) {
     return (
         <div className="control-panel">
-            <button className="black-button" onClick={handlePokemonSelection}></button>
+            <button className="black-button" onClick={handlePokemonSelection}>A</button>
             <div className="middle">
                 <div className="thingies">
-                    <div className="red thingy"></div>
-                    <div className="blue thingy"></div>
+                    <div className="start thingy">Start</div>
+                    <div className="select thingy">Select</div>
                 </div>
                 <NamePlate selectedPokemon={selectedPokemon} />
             </div>
