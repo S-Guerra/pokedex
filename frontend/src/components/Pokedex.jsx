@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import LeftPanel from "./LeftPanel.jsx"
 import RightPanel from "./RightPanel.jsx"
 
@@ -19,8 +19,8 @@ export default function Pokedex() {
             .catch(err => console.error("Failed to load Pokémon list:", err));
     }, []);
 
-    const handlePokemonSelection = async () => {
-        fetch(`http://localhost:3001/api/pokemon/${selectedIndex + 1}`)
+    const handlePokemonSelection = useCallback(async (index) => {
+        fetch(`http://localhost:3001/api/pokemon/${index}`)
             .then(res => res.json())
             .then(data => {
                 setSelectedPokemon(data);
@@ -31,7 +31,21 @@ export default function Pokedex() {
                 audio.play().catch((err) => console.log("Audio error:", err));
             })
             .catch(err => console.error("Failed to load Pokémon:", err));
-    }
+    }, [setSelectedPokemon]);
+
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Enter") {
+                handlePokemonSelection(selectedIndex + 1);
+            } else if (event.key === "Escape") {
+                setSelectedPokemon(null);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [selectedIndex, handlePokemonSelection, setSelectedPokemon]);
 
     return (
         <div className={`pokedex ${isRightOpen ? "open" : "closed"}`}>
