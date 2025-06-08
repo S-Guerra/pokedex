@@ -3,7 +3,7 @@ import React from "react"
 export default function DisplayScreen({ pokemonList, selectedIndex, selectedPokemon, setSelectedPokemon }) {
     const visibleCount = 7;
     const half = Math.floor(visibleCount / 2);
-    const start = Math.max(0, selectedIndex - half);
+    const start = Math.min(Math.max(0, selectedIndex - half), pokemonList.length - visibleCount);
     const end = Math.min(pokemonList.length, start + visibleCount);
     const visiblePokemon = pokemonList.slice(start, end);
 
