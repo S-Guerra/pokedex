@@ -45,7 +45,7 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
 
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, []);
+    });
 
     return (
         <div className={`panel left ${isOpen ? "open" : "closed"}`}>
@@ -75,7 +75,7 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
                             <div className="start thingy">Start</div>
                             <div className="select thingy">Select</div>
                         </div>
-                        <p className="name-plate">{selectedPokemon ? selectedPokemon.name : ""}</p>
+                        <p className={`name screen ${selectedPokemon ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.name : ""}</p>
                     </div>
                     <div className="d-pad">
                         <button ref={upRef} className="d-top" onClick={() => handlePad("ArrowUp")}><div className="d-dot"></div></button>

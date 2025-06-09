@@ -34,7 +34,7 @@ export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
                     <div className="bottom-texture"></div>
                 </div>
                 <div className="panel right inner" >
-                    <p className="description screen">{selectedPokemon ? selectedPokemon.description : ""}</p>
+                    <p className={`description screen ${selectedPokemon ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.description : ""}</p>
                     <div className="blue">
                         {Array.from({ length: 10 }).map((_, i) => (
                             <button key={i}></button>
@@ -54,8 +54,8 @@ export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
                         </div>
                     </div>
                     <div className="type-wrapper">
-                        <p className="type screen">{selectedPokemon ? selectedPokemon.type1 : ""}</p>
-                        <p className="type screen">{selectedPokemon ? selectedPokemon.type2 : ""}</p>
+                        <p className={`type screen ${selectedPokemon ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.type1 : ""}</p>
+                        <p className={`type screen ${selectedPokemon && selectedPokemon.type2 ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.type2 : ""}</p>
                     </div>
                 </div>
             </div>

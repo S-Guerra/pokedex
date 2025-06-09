@@ -37,4 +37,19 @@ body {
     &.open {
         transform: translateX(-150px);
     }
+
+    .screen {
+        padding: 3px;
+        border: 1px solid $black;
+        border-radius: 7px;
+        background-color: $display-screen-inactive;
+        box-shadow: inset 0 0 1px 1px $black;
+
+        &.active {
+            color: $black;
+            background-color: $display-screen !important;
+            box-shadow: inset 0 0 3px 1px $green-dark;
+            font-family: "Press Start 2P", system-ui;
+        }
+    }
 }

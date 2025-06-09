@@ -114,6 +114,7 @@
                 border-radius: 4px;
                 color: $black;
                 background-color: $display-screen;
+                box-shadow: inset 0 0 3px 1px $green-dark !important;
                 font-family: "Press Start 2P", system-ui;
                 font-size: 9px;
                 overflow: hidden;
@@ -130,15 +131,15 @@
                         display: flex;
                         justify-content: space-between;
                         padding: 3px 6px;
-                        border-top: 1px solid $black-active;
+                        border-top: 1px solid $display-screen-inactive;
 
                         &:first-of-type {
                             border-top: none;
                         }
 
                         &.selected {
-                            color: $white;
-                            background-color: $black-active;
+                            color: $display-screen;
+                            background-color: $display-screen-inactive;
                         }
 
                         .id {
@@ -251,14 +252,13 @@
                 }
             }
 
-            .name-plate {
+            .name.screen {
                 width: 90px;
                 height: 50px;
                 padding: 3px;
                 border: 1px solid $black;
                 border-radius: 7px;
-                color: $black;
-                background-color: $display-screen;
+                background-color: $display-screen-inactive;
                 font-family: "Press Start 2P", system-ui;
                 font-size: 9px;
                 line-height: 48px;

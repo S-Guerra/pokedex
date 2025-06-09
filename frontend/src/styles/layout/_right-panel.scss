@@ -114,15 +114,6 @@
                 transition-property: z-index;
                 transition-delay: 0.5s;
 
-                .screen {
-                    padding: 3px;
-                    border: 1px solid $black;
-                    border-radius: 7px;
-                    color: $black;
-                    background-color: $display-screen;
-                    font-family: "Press Start 2P", system-ui;
-                }
-
                 .description {
                     width: 244px;
                     height: 64px;
