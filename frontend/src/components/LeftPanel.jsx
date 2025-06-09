@@ -15,6 +15,26 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
         ArrowRight: rightRef,
     };
 
+    // To make mouse navigation smoother
+    const holdTimeout = useRef(null);
+    const holdInterval = useRef(null);
+
+    const startHold = (key) => {
+        // Initial delay of 500ms
+        holdTimeout.current = setTimeout(() => {
+            holdInterval.current = setInterval(() => {
+                handlePad({ currentTarget: { blur: () => { } } }, key);
+            }, 33);
+        }, 500);
+    };
+
+    const stopHold = () => {
+        clearTimeout(holdTimeout.current);
+        clearInterval(holdInterval.current);
+        holdTimeout.current = null;
+        holdInterval.current = null;
+    };
+
     const handlePad = (event, key) => {
         event.currentTarget.blur();
 
@@ -85,10 +105,18 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
                         <p className={`name screen ${selectedPokemon ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.name : ""}</p>
                     </div>
                     <div className="d-pad">
-                        <button ref={upRef} className="d-top" onClick={(e) => handlePad(e, "ArrowUp")}><div className="d-dot"></div></button>
-                        <button ref={rightRef} className="d-right" onClick={(e) => handlePad(e, "ArrowRight")}><div className="d-dot"></div></button>
-                        <button ref={downRef} className="d-bottom" onClick={(e) => handlePad(e, "ArrowDown")}><div className="d-dot"></div></button>
-                        <button ref={leftRef} className="d-left" onClick={(e) => handlePad(e, "ArrowLeft")}><div className="d-dot"></div></button>
+                        <button ref={upRef} className="d-top" onMouseDown={() => startHold("ArrowUp")} onMouseUp={stopHold} onClick={(e) => handlePad(e, "ArrowUp")}>
+                            <div className="d-dot"></div>
+                        </button>
+                        <button ref={rightRef} className="d-right" onClick={(e) => handlePad(e, "ArrowRight")}>
+                            <div className="d-dot"></div>
+                        </button>
+                        <button ref={downRef} className="d-bottom" onMouseDown={() => startHold("ArrowDown")} onMouseUp={stopHold} onClick={(e) => handlePad(e, "ArrowDown")}>
+                            <div className="d-dot"></div>
+                        </button>
+                        <button ref={leftRef} className="d-left" onClick={(e) => handlePad(e, "ArrowLeft")}>
+                            <div className="d-dot"></div>
+                        </button>
                     </div>
                 </div>
             </div>
