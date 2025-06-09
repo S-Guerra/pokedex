@@ -6,6 +6,7 @@ export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
     const [label, setLabel] = useState("Ouvrir >");
 
     const toggleOpen = () => {
+        console.log("wtf");
         const newIsOpen = !isOpen;
         setIsOpen(newIsOpen);
         setBookState(newIsOpen ? "open" : "closed");
@@ -59,7 +60,10 @@ export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
                     </div>
                 </div>
             </div>
-            <button className={`toggle ${labelState}`} onClick={toggleOpen}>{label}</button>
+            <button className={`toggle ${labelState}`} onClick={(e) => {
+                e.currentTarget.blur();
+                toggleOpen();
+            }}>{label}</button>
         </div>
     );
 }

@@ -78,6 +78,7 @@
 
             &.outer {
                 cursor: pointer;
+                box-shadow: inset -4px 0 6px -2px $red-glowest;
 
                 .yellow-arrow {
                     position: relative;
@@ -113,6 +114,10 @@
                 align-items: center;
                 transition-property: z-index;
                 transition-delay: 0.5s;
+                box-shadow:
+                    0 8px 8px -8px $black-opacity,
+                    inset -7px 0 7px -7px $red-dark,
+                    inset 0 -7px 7px -7px $black-opacity;
 
                 .description {
                     width: 244px;

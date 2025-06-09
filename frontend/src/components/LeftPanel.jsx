@@ -15,7 +15,9 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
         ArrowRight: rightRef,
     };
 
-    const handlePad = (key) => {
+    const handlePad = (event, key) => {
+        event.currentTarget.blur();
+
         if (key === "ArrowUp" && !selectedPokemon) {
             setSelectedIndex(i => Math.max(0, i - 1));
         } else if (key === "ArrowRight" && selectedPokemon) {
@@ -47,6 +49,8 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
         return () => window.removeEventListener("keydown", handleKeyDown);
     });
 
+    const handleBack = () => setSelectedPokemon(null);
+
     return (
         <div className={`panel left ${isOpen ? "open" : "closed"}`}>
             <div className="top">
@@ -67,9 +71,12 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
                 </div>
             </div>
             <div className="content">
-                <DisplayScreen pokemonList={pokemonList} selectedIndex={selectedIndex} selectedPokemon={selectedPokemon} setSelectedPokemon={setSelectedPokemon} />
+                <DisplayScreen pokemonList={pokemonList} selectedIndex={selectedIndex} selectedPokemon={selectedPokemon} />
                 <div className="control-panel">
-                    <button className="black-button" onClick={() => handlePokemonSelection(selectedIndex + 1)}>A</button>
+                    <button className="black-button" onClick={(e) => {
+                        e.currentTarget.blur();
+                        selectedPokemon ? handleBack() : handlePokemonSelection(selectedIndex + 1)
+                    }}>A</button>
                     <div className="middle">
                         <div className="thingies">
                             <div className="start thingy">Start</div>
@@ -78,10 +85,10 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
                         <p className={`name screen ${selectedPokemon ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.name : ""}</p>
                     </div>
                     <div className="d-pad">
-                        <button ref={upRef} className="d-top" onClick={() => handlePad("ArrowUp")}><div className="d-dot"></div></button>
-                        <button ref={rightRef} className="d-right" onClick={() => handlePad("ArrowRight")}><div className="d-dot"></div></button>
-                        <button ref={downRef} className="d-bottom" onClick={() => handlePad("ArrowDown")}><div className="d-dot"></div></button>
-                        <button ref={leftRef} className="d-left" onClick={() => handlePad("ArrowLeft")}><div className="d-dot"></div></button>
+                        <button ref={upRef} className="d-top" onClick={(e) => handlePad(e, "ArrowUp")}><div className="d-dot"></div></button>
+                        <button ref={rightRef} className="d-right" onClick={(e) => handlePad(e, "ArrowRight")}><div className="d-dot"></div></button>
+                        <button ref={downRef} className="d-bottom" onClick={(e) => handlePad(e, "ArrowDown")}><div className="d-dot"></div></button>
+                        <button ref={leftRef} className="d-left" onClick={(e) => handlePad(e, "ArrowLeft")}><div className="d-dot"></div></button>
                     </div>
                 </div>
             </div>
