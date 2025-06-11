@@ -99,6 +99,9 @@
             border: 1px solid $gray-dark;
             border-radius: 5px;
             background-color: $gray-light;
+            box-shadow:
+                inset 1px 0 1px $light-filter-heaviest,
+                inset -1px -1px 1px $dark-filter-heaviest;
 
             .display-top {
                 display: flex;
@@ -303,12 +306,12 @@
                         box-shadow:
                             inset -1px -1px 1px $dark-filter-medium,
                             inset 1px 0 1px $light-filter-medium,
-                            0 2px 0 #00254b;
+                            0 2px 0 $blue-shadow-dark;
 
                         &:active {
                             box-shadow:
                                 inset 1px 1px 1px $light-filter-light,
-                                0 1px 0 #094aaa;
+                                0 1px 0 $blue-shadow-light;
                         }
                     }
 

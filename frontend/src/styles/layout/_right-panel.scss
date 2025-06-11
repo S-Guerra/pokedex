@@ -134,11 +134,26 @@
                     height: 70px;
 
                     button {
+                        position: relative;
                         width: 50px;
                         height: 35px;
-                        border: 1px solid $gray-dark;
+                        border: none;
                         color: $black;
                         background-color: $blue-main;
+                        transition: all 0.1s ease;
+
+                        @for $i from 0 through 9 {
+                            $color: if($i < 5, #003761ec, $blue-filter-heavy);
+                            $level: if($i < 5, 1, 2);
+
+                            &.button-#{$i} {
+                                box-shadow:
+                                    inset 1px 1px 1px $light-filter-heavy,
+                                    inset -1px -1px 1px $dark-filter-heaviest,
+                                    0 2px 0 $color;
+                                z-index: $level;
+                            }
+                        }
 
                         &:first-of-type {
                             border-top-left-radius: 7px;
@@ -154,6 +169,13 @@
 
                         &:last-of-type {
                             border-bottom-right-radius: 7px;
+                        }
+
+                        &:active {
+                            transform: translateY(2px);
+                            box-shadow:
+                                inset 1px 1px 1px $dark-filter-light,
+                                inset -1px -1px 2px $dark-filter-heaviest;
                         }
                     }
                 }
@@ -221,9 +243,21 @@
                                     height: 7px;
                                     border-radius: 3px;
                                     background-color: $gray-dark;
+                                    box-shadow:
+                                        inset 1px 1px 1px $light-filter-light,
+                                        inset -1px -1px 2px $dark-filter-medium,
+                                        0 2px 0 $dark-filter-heaviest;
+                                    transition: all 0.1s ease;
 
                                     &:first-of-type {
                                         margin-right: 7px;
+                                    }
+
+                                    &:active {
+                                        transform: translateY(2px);
+                                        box-shadow:
+                                            inset 1px 1px 1px $dark-filter-light,
+                                            inset -1px -1px 2px $dark-filter-heaviest;
                                     }
                                 }
                             }

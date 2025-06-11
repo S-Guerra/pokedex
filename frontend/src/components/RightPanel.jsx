@@ -38,7 +38,7 @@ export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
                     <p className={`description screen ${selectedPokemon ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.description : ""}</p>
                     <div className="blue">
                         {Array.from({ length: 10 }).map((_, i) => (
-                            <button key={i}></button>
+                            <button key={i} className={`button-${i}`}></button>
                         ))}
                     </div>
                     <div className="yellow-section">

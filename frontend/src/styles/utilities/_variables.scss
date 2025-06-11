@@ -1,5 +1,4 @@
-// Primary Colors
-// Red
+// Reds
 $red-main: #ff0000;
 $red-main-dark: #da0000;
 $red-deep: #b60000;
@@ -8,29 +7,31 @@ $red-glow: #d33;
 $red-dark: #8f0000;
 $red-shadow: #3a0000;
 
-// Purple
+// Purples
 $purple-light: #a092c8;
 $purple-dark: #342555;
 
-// Blue
+// Blues
 $blue-main: #008cff;
 $blue-light: #66c7ff;
 $blue-dark: #004c99;
 $blue-thingy: #0066ff;
+$blue-shadow-light: #094aaa;
+$blue-shadow-dark: #00254b;
 
-// Yellow
+// Yellows
 $yellow-light: #ffe066;
 $yellow-main: #ffd000;
 $yellow-shadow: #b39200;
 
-// Green
+// Greens
 $display-screen: #95ff95;
 $green-light: #66ff66;
 $green-main: #00c800;
 $green-dark: #006600;
 $display-screen-inactive: #002900;
 
-// White - Grays - Black
+// White- Grays - Black
 $white: #ffffff;
 $gray-light: #cccccc;
 $gray-dark-active: #777777;
@@ -47,3 +48,5 @@ $dark-filter-light: #00000033;
 $dark-filter-medium: #00000066;
 $dark-filter-heavy: #00000099;
 $dark-filter-heaviest: #000000de;
+$blue-filter-medium: #003761ec;
+$blue-filter-heavy: #002c509f;
