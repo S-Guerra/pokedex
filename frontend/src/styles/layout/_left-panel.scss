@@ -191,7 +191,7 @@
                         inset 0 -1px 1px #000000bb,
                         inset 0 1px 1px #ffffff66,
                         0 1px 0 #570000;
-                    transition: transform 0.1s ease, box-shadow 0.1s ease;
+                    transition: all 0.1s ease;
                     cursor: default;
 
                     &:active {
@@ -242,7 +242,7 @@
             box-shadow:
                 inset 1px 1px 1px $light-filter-light,
                 inset -1px -1px 2px $dark-filter-medium,
-                0 1px 0 $dark-filter-heaviest;
+                0 2px 0 $dark-filter-heaviest;
             color: $gray-light;
             background-color: $gray-dark;
             font-family: "Press Start 2P", system-ui;
@@ -250,7 +250,7 @@
                 0 1px 0 $dark-filter-light,
                 1px 0 0 $dark-filter-light;
             cursor: pointer;
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            transition: all 0.1s ease;
 
             &:active {
                 transform: translateY(2px);
@@ -279,7 +279,7 @@
                     text-align: center;
                     color: $black;
                     position: relative;
-                    transition: transform 0.1s ease, box-shadow 0.1s ease;
+                    transition: all 0.1s ease;
                     cursor: default;
                     user-select: none;
 
@@ -365,7 +365,7 @@
                     0 2px 0 $dark-filter-heaviest;
                 line-height: 40%;
                 text-align: center;
-                transition: transform 0.1s ease, box-shadow 0.1s ease;
+                transition: all 0.1s ease;
                 cursor: pointer;
 
                 &:active {
