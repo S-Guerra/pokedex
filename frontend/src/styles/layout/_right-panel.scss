@@ -115,9 +115,9 @@
                 transition-property: z-index;
                 transition-delay: 0.5s;
                 box-shadow:
-                    0 8px 8px -8px $black-opacity,
+                    0 8px 8px -8px $dark-filter-light,
                     inset -7px 0 7px -7px $red-dark,
-                    inset 0 -7px 7px -7px $black-opacity;
+                    inset 0 -7px 7px -7px $dark-filter-light;
 
                 .description {
                     width: 244px;

@@ -6,9 +6,9 @@
     border-top-left-radius: 15px;
     background-color: $red-main-dark;
     box-shadow:
-        0 4px 8px $black-opacity,
+        0 4px 8px $dark-filter-light,
         inset 2px 2px 6px $red-glowest,
-        inset -2px -2px 6px $black-opacity;
+        inset -2px -2px 6px $dark-filter-light;
 
     .top {
         display: flex;
@@ -124,7 +124,6 @@
                 color: $black;
                 background-color: $display-screen;
                 box-shadow: inset 0 0 3px 1px $green-dark !important;
-                font-family: "Press Start 2P", system-ui;
                 font-size: 9px;
                 overflow: hidden;
 
@@ -181,11 +180,26 @@
                 width: 165px;
 
                 button {
+                    position: relative;
                     width: 12px;
                     height: 12px;
                     border: none;
                     border-radius: 50%;
+                    margin-bottom: 1px;
                     background-color: $red-main;
+                    box-shadow:
+                        inset 0 -1px 1px #000000bb,
+                        inset 0 1px 1px #ffffff66,
+                        0 1px 0 #570000;
+                    transition: transform 0.1s ease, box-shadow 0.1s ease;
+                    cursor: default;
+
+                    &:active {
+                        transform: translateY(1px);
+                        box-shadow:
+                            inset 0 -1px 1px #000000bb,
+                            inset 0 1px 1px #ffffff66;
+                    }
                 }
 
                 .speaker {
@@ -221,51 +235,28 @@
         padding: 17px 0;
 
         .black-button {
-            position: relative;
             width: 35px;
             height: 35px;
-            background-color: $gray-dark;
-            color: $white-opacity;
             border: none;
             border-radius: 50%;
-            cursor: pointer;
+            box-shadow:
+                inset 1px 1px 1px $light-filter-light,
+                inset -1px -1px 2px $dark-filter-medium,
+                0 1px 0 $dark-filter-heaviest;
+            color: $gray-light;
+            background-color: $gray-dark;
             font-family: "Press Start 2P", system-ui;
-            text-shadow: 0 1px 0 $black-opacity;
-            transition: transform 0.1s ease;
+            text-shadow:
+                0 1px 0 $dark-filter-light,
+                1px 0 0 $dark-filter-light;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
 
             &:active {
                 transform: translateY(2px);
                 box-shadow:
-                    inset 0 2px 4px $black-opacity,
-                    0 1px 2px $black-opacity;
-            }
-
-            &::before,
-            &::after {
-                content: "";
-                position: absolute;
-                border-radius: inherit;
-                pointer-events: none;
-            }
-
-            &::before {
-                top: 1px;
-                left: 1px;
-                right: 1px;
-                bottom: 1px;
-                background: linear-gradient(to bottom, rgba(255, 255, 255, 0.07), transparent);
-                border-radius: inherit;
-            }
-
-            &::after {
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                box-shadow:
-                    inset 0 2px 3px rgba(255, 255, 255, 0.06),
-                    inset 0 -3px 3px rgba(0, 0, 0, 0.6);
-                border-radius: inherit;
+                    inset 1px 1px 1px $dark-filter-light,
+                    inset -1px -1px 2px $dark-filter-heaviest;
             }
         }
 
@@ -283,19 +274,46 @@
                     width: 47px;
                     height: 12px;
                     border-radius: 2.5px;
-                    font-family: "Press Start 2P", system-ui;
                     font-size: 7px;
                     line-height: 12px;
                     text-align: center;
                     color: $black;
+                    position: relative;
+                    transition: transform 0.1s ease, box-shadow 0.1s ease;
+                    cursor: default;
+                    user-select: none;
 
                     &.start {
                         margin-right: 20px;
                         background-color: $red-main;
+                        box-shadow:
+                            inset -1px -1px 1px $dark-filter-medium,
+                            inset 1px 0 1px $light-filter-medium,
+                            0 2px 0 $dark-filter-heavy;
+
+                        &:active {
+                            box-shadow:
+                                inset 1px 1px 1px $light-filter-light,
+                                0 1px 0 $dark-filter-medium;
+                        }
                     }
 
                     &.select {
                         background-color: $blue-thingy;
+                        box-shadow:
+                            inset -1px -1px 1px $dark-filter-medium,
+                            inset 1px 0 1px $light-filter-medium,
+                            0 2px 0 #00254b;
+
+                        &:active {
+                            box-shadow:
+                                inset 1px 1px 1px $light-filter-light,
+                                0 1px 0 #094aaa;
+                        }
+                    }
+
+                    &:active {
+                        transform: translateY(1px);
                     }
                 }
             }
@@ -317,111 +335,151 @@
 
         .d-pad {
             position: relative;
-            width: 24px;
-            height: 24px;
-            margin: 22px;
-            background-color: $gray-dark;
+            width: 68px;
+            height: 68px;
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                border-radius: 5%;
+                transform: translate(-50%, -50%);
+                width: 66.6%;
+                height: 66.6%;
+                background: radial-gradient($red-dark, transparent);
+            }
 
             button {
                 position: absolute;
-                width: 22px;
-                height: 22px;
-                padding: 0;
+                display: block;
+                width: 33.3%;
+                height: 43%;
                 border: none;
+                border-radius: 35%;
+                color: #fff;
                 background-color: $gray-dark;
+                box-shadow:
+                    inset 1px 1px 1px $light-filter-light,
+                    inset -1px -1px 2px $dark-filter-medium,
+                    0 2px 0 $dark-filter-heaviest;
+                line-height: 40%;
+                text-align: center;
+                transition: transform 0.1s ease, box-shadow 0.1s ease;
                 cursor: pointer;
 
-                &:hover {
-                    z-index: 2;
+                &:active {
+                    box-shadow:
+                        inset 1px 1px 1px $dark-filter-light,
+                        inset -1px -1px 2px $dark-filter-heaviest;
                 }
 
-                &::before {
+                &:before {
                     content: "";
                     position: absolute;
                     width: 0;
                     height: 0;
+                    border-radius: 5px;
                     border-style: solid;
-                }
-
-                .d-dot {
-                    width: 6px;
-                    height: 6px;
-                    margin: 8px;
-                    border-radius: 50%;
-                    background-color: $black;
-                    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.2);
+                    transition: all 0.25s;
                 }
             }
 
-            button:active {
-                background-color: $gray-dark-active;
+            button.d-left,
+            button.d-right {
+                width: 43%;
+                height: 33%;
+            }
 
-                .d-dot {
-                    background-color: $black-active;
+            button.d-top {
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, 0);
+                border-radius: 17% 17% 50% 50%;
+
+                &:active {
+                    transform: translate(-50%, 2px);
+                }
+
+                &:before {
+                    top: 40%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-width: 0 5px 7px 5px;
+                    border-color: transparent transparent $gray-light transparent;
+                }
+
+                &.d-top:hover:before {
+                    top: 35%;
                 }
             }
 
-            .d-top {
-                top: -22px;
-                left: 1px;
+            button.d-right {
+                top: 50%;
+                right: 0;
+                transform: translate(0, -50%);
+                border-radius: 50% 17% 17% 50%;
 
-                &::before {
-                    top: 100%;
-                    left: -0.5px;
-                    border-width: 12px 12px 0 12px;
-                    border-color: $gray-dark transparent transparent transparent;
+                &:active {
+                    transform: translate(0, -42%);
                 }
 
-                &:active::before {
-                    border-color: $gray-dark-active transparent transparent transparent;
-                }
-            }
-
-            .d-right {
-                top: 1px;
-                right: -22px;
-
-                &::before {
-                    top: -1px;
-                    left: -11.5px;
-                    border-width: 12px 12px 12px 0;
-                    border-color: transparent $gray-dark transparent transparent;
+                &:before {
+                    right: 40%;
+                    top: 50%;
+                    transform: translate(50%, -50%);
+                    border-width: 5px 0 5px 7px;
+                    border-color: transparent transparent transparent $gray-light;
                 }
 
-                &:active::before {
-                    border-color: transparent $gray-dark-active transparent transparent;
+                &.d-right:hover:before {
+                    right: 35%;
                 }
             }
 
-            .d-bottom {
-                bottom: -22px;
-                left: 1px;
+            button.d-bottom {
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%, 0);
+                border-radius: 50% 50% 17% 17%;
 
-                &::before {
-                    bottom: 100%;
-                    left: -0.5px;
-                    border-width: 0 12px 12px 12px;
-                    border-color: transparent transparent $gray-dark transparent;
+                &:active {
+                    transform: translate(-50%, 2px);
                 }
 
-                &:active::before {
-                    border-color: transparent transparent $gray-dark-active transparent;
+                &:before {
+                    bottom: 40%;
+                    left: 50%;
+                    transform: translate(-50%, 50%);
+                    border-width: 7px 5px 0px 5px;
+                    border-color: $gray-light transparent transparent transparent;
+                }
+
+                &.d-bottom:hover:before {
+                    bottom: 35%;
                 }
             }
 
-            .d-left {
-                top: 1px;
-                left: -22px;
+            button.d-left {
+                top: 50%;
+                left: 0;
+                transform: translate(0, -50%);
+                border-radius: 17% 50% 50% 17%;
 
-                &::before {
-                    top: -1px;
-                    right: -11.5px;
-                    border-width: 12px 0 12px 12px;
-                    border-color: transparent transparent transparent $gray-dark;
+                &:active {
+                    transform: translate(0, -42%);
                 }
 
-                &:active::before {
-                    border-color: transparent transparent transparent $gray-dark-active;
+                &:before {
+                    left: 40%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    border-width: 5px 7px 5px 0;
+                    border-color: transparent $gray-light transparent transparent;
+                }
+
+                &.d-left:hover:before {
+                    left: 35%;
                 }
             }
         }

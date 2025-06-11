@@ -32,10 +32,18 @@ $display-screen-inactive: #002900;
 
 // White - Grays - Black
 $white: #ffffff;
-$white-opacity: #ffffffde;
 $gray-light: #cccccc;
 $gray-dark-active: #777777;
 $black-active: #444444;
 $gray-dark: #333333;
 $black: #000000;
-$black-opacity: #00000033;
+
+// Filters
+$light-filter-light: #ffffff33;
+$light-filter-medium: #ffffff66;
+$light-filter-heavy: #ffffff99;
+$light-filter-heaviest: #ffffffde;
+$dark-filter-light: #00000033;
+$dark-filter-medium: #00000066;
+$dark-filter-heavy: #00000099;
+$dark-filter-heaviest: #000000de;
