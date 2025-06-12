@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from "react";
 import DisplayScreen from "./DisplayScreen.jsx"
 
 // Visual/functional layout of the left side
-export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelectedIndex, selectedPokemon, setSelectedPokemon, handlePokemonSelection }) {
+export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, selectedIndex, setSelectedIndex, selectedPokemon, setSelectedPokemon, handlePokemonSelection }) {
+    const menuBip = new Audio("https://static.wikia.nocookie.net/soundeffects/images/f/f4/SFX_PRESS_AB.wav");
     const upRef = useRef(null);
     const downRef = useRef(null);
     const leftRef = useRef(null);
@@ -40,6 +41,7 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
 
         if (key === "ArrowUp" && !selectedPokemon) {
             setSelectedIndex(i => Math.max(0, i - 1));
+            menuBip.play().catch((err) => console.log("Audio error:", err));
         } else if (key === "ArrowRight" && selectedPokemon) {
             setSelectedIndex(i => {
                 const newIndex = Math.min(pokemonList.length - 1, i + 1);
@@ -48,6 +50,7 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
             });
         } else if (key === "ArrowDown" && !selectedPokemon) {
             setSelectedIndex(i => Math.min(pokemonList.length - 1, i + 1));
+            menuBip.play().catch((err) => console.log("Audio error:", err));
         } else if (key === "ArrowLeft" && selectedPokemon) {
             setSelectedIndex(i => {
                 const newIndex = Math.max(0, i - 1);
@@ -60,6 +63,11 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
     useEffect(() => {
         const handleKeyDown = (event) => {
             const ref = keyToRefMap[event.key];
+            if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+                console.log("Yoooo")
+                event.preventDefault();
+            }
+
             if (ref?.current) {
                 ref.current.click();
             }
@@ -82,16 +90,18 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
                     </div>
                 </div>
                 <div className="lights-wrapper">
-                    <div className="big-blue"></div>
+                    <div className="big-blue-wrapper">
+                        <div className={`big-blue ${isBootingUp || isCrying ? "flashing" : ""}`}></div>
+                    </div>
                     <div className="small-wrapper">
-                        <div className="small r"></div>
-                        <div className="small y"></div>
-                        <div className="small g"></div>
+                        <div className={`small r ${isBootingUp || isCrying ? "flashing" : ""}`}></div>
+                        <div className={`small y ${isBootingUp || isCrying ? "flashing" : ""}`}></div>
+                        <div className={`small g ${isBootingUp || isCrying ? "flashing" : ""}`}></div>
                     </div>
                 </div>
             </div>
             <div className="content">
-                <DisplayScreen pokemonList={pokemonList} selectedIndex={selectedIndex} selectedPokemon={selectedPokemon} />
+                <DisplayScreen pokemonList={pokemonList} selectedIndex={selectedIndex} selectedPokemon={selectedPokemon} isOpen={isOpen} isBootingUp={isBootingUp} />
                 <div className="control-panel">
                     <button className="black-button" onClick={(e) => {
                         e.currentTarget.blur();
@@ -102,7 +112,7 @@ export default function LeftPanel({ isOpen, pokemonList, selectedIndex, setSelec
                             <div className="start thingy">Start</div>
                             <div className="select thingy">Select</div>
                         </div>
-                        <p className={`name screen ${selectedPokemon ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.name : ""}</p>
+                        <p className={`name screen ${selectedPokemon ? "active" : ""} ${isBootingUp ? "flashing" : ""}`}>{selectedPokemon ? selectedPokemon.name : ""}</p>
                     </div>
                     <div className="d-pad">
                         <button ref={upRef} className="d-top" onMouseDown={() => startHold("ArrowUp")} onMouseUp={stopHold} onClick={(e) => handlePad(e, "ArrowUp")}>

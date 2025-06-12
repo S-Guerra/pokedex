@@ -1,4 +1,5 @@
 @use "../utilities/variables" as *;
+@use "../utilities/animations" as *;
 
 .panel-right-wrapper {
     position: absolute;
@@ -125,6 +126,7 @@
                     font-size: 8px;
                     text-align: left;
                     overflow-y: auto;
+                    scrollbar-color: $dark-filter-heaviest $display-screen;
                 }
 
                 .blue {
@@ -152,23 +154,24 @@
                                     inset -1px -1px 1px $dark-filter-heaviest,
                                     0 2px 0 $color;
                                 z-index: $level;
+
+                                // corners
+                                @if $i ==0 {
+                                    border-top-left-radius: 7px;
+                                }
+
+                                @else if $i ==4 {
+                                    border-top-right-radius: 7px;
+                                }
+
+                                @else if $i ==5 {
+                                    border-bottom-left-radius: 7px;
+                                }
+
+                                @else if $i ==9 {
+                                    border-bottom-right-radius: 7px;
+                                }
                             }
-                        }
-
-                        &:first-of-type {
-                            border-top-left-radius: 7px;
-                        }
-
-                        &:nth-of-type(5) {
-                            border-top-right-radius: 7px;
-                        }
-
-                        &:nth-of-type(6) {
-                            border-bottom-left-radius: 7px;
-                        }
-
-                        &:last-of-type {
-                            border-bottom-right-radius: 7px;
                         }
 
                         &:active {
@@ -262,11 +265,15 @@
                                 }
                             }
 
-                            .yellow-button {
+                            .yellow-light {
                                 width: 30px;
                                 height: 30px;
                                 border-radius: 50%;
-                                background: radial-gradient(circle at 30% 30%, $white 0%, $yellow-light 25%, $yellow-main 60%, $yellow-shadow 100%)
+                                background: radial-gradient(circle at 30% 30%, $white 0%, $yellow-light 25%, $yellow-main 60%, $yellow-shadow 100%);
+
+                                &.flashing {
+                                    @include flashing($yellow-light);
+                                }
                             }
                         }
                     }
@@ -315,25 +322,5 @@
         &.closed {
             transform: rotateY(180deg);
         }
-    }
-}
-
-@keyframes openAnim {
-    from {
-        margin-left: 10px;
-    }
-
-    to {
-        margin-left: 0;
-    }
-}
-
-@keyframes closeAnim {
-    from {
-        margin-left: 0;
-    }
-
-    to {
-        margin-left: 10px;
     }
 }

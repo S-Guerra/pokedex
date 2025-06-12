@@ -1,11 +1,26 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 
-export default function DisplayScreen({ pokemonList, selectedIndex, selectedPokemon }) {
+export default function DisplayScreen({ pokemonList, selectedIndex, selectedPokemon, isOpen, isBootingUp }) {
     const visibleCount = 7;
     const half = Math.floor(visibleCount / 2);
     const start = Math.min(Math.max(0, selectedIndex - half), pokemonList.length - visibleCount);
     const end = Math.min(pokemonList.length, start + visibleCount);
     const visiblePokemon = pokemonList.slice(start, end);
+
+    const [delayDone, setDelayDone] = useState(false);
+
+    useEffect(() => {
+        let timer;
+        if (isOpen) {
+            setDelayDone(false);
+            timer = setTimeout(() => {
+                setDelayDone(true);
+            }, 1500);
+        } else {
+            setDelayDone(false);
+        }
+        return () => clearTimeout(timer);
+    }, [isOpen]);
 
     return (
         <div className="display">
@@ -13,20 +28,23 @@ export default function DisplayScreen({ pokemonList, selectedIndex, selectedPoke
                 <div className="display-light"></div>
                 <div className="display-light"></div>
             </div>
-            {selectedPokemon ?
-                (<div className="display-screen sprite"><img src={selectedPokemon.picture_url} alt={selectedPokemon.name}></img></div>) :
-                (
-                    <ul className="display-screen list">
-                        {visiblePokemon.map((pokemon, idx) => {
-                            const isSelected = start + idx === selectedIndex;
-                            return (
-                                <li key={pokemon.id} className={isSelected ? "selected" : ""}>
-                                    <span className="id">{pokemon.id.toString().padStart(3, "0")}</span>
-                                    <span className="name">{pokemon.name}</span>
-                                </li>
-                            );
-                        })}
-                    </ul>
+            {!isOpen || !delayDone ?
+                (<div className={`display-screen ${isBootingUp ? "flashing" : ""}`}></div>) :
+                (selectedPokemon ?
+                    (<div className="display-screen active sprite"><img src={selectedPokemon.picture_url} alt={selectedPokemon.name}></img></div>) :
+                    (
+                        <ul className="display-screen active list">
+                            {visiblePokemon.map((pokemon, idx) => {
+                                const isSelected = start + idx === selectedIndex;
+                                return (
+                                    <li key={pokemon.id} className={isSelected ? "selected" : ""}>
+                                        <span className="id">{pokemon.id.toString().padStart(3, "0")}</span>
+                                        <span className="name">{pokemon.name}</span>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    )
                 )
             }
             <div className="display-bottom">

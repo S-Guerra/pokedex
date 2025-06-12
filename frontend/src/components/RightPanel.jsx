@@ -1,25 +1,46 @@
 import React, { useState, useEffect } from "react";
 
-export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
+export default function RightPanel({ isOpen, setIsOpen, isBootingUp, setIsBootingUp, isCrying, selectedPokemon, setSelectedPokemon, setSelectedIndex }) {
+    const bootUp = new Audio("https://static.wikia.nocookie.net/soundeffects/images/d/de/SFX_TURN_ON_PC.wav");
     const [bookState, setBookState] = useState("");
     const [labelState, setLabelState] = useState("closed");
     const [label, setLabel] = useState("Ouvrir >");
 
     const toggleOpen = () => {
-        console.log("wtf");
         const newIsOpen = !isOpen;
         setIsOpen(newIsOpen);
-        setBookState(newIsOpen ? "open" : "closed");
-        setLabelState(newIsOpen ? "open" : "closed");
+
+        if (newIsOpen) {
+            setBookState("open");
+            setLabelState("open");
+            setTimeout(() => {
+                setIsBootingUp(true);
+                bootUp.play().catch((err) => console.log("Audio error:", err));
+                setTimeout(() => {
+                    setIsBootingUp(false);
+                }, 1000);
+            }, 500);
+        } else {
+            setSelectedPokemon(null);
+            setSelectedIndex(0);
+            setBookState("closed");
+            setLabelState("closed");
+            setIsBootingUp(false);
+        }
     };
 
+    // Toggles label open/close
     useEffect(() => {
         const timer = setTimeout(() => {
-            setLabel(isOpen ? "< Fermer" : "Ouvrir >");
+            if (isOpen) {
+                setLabel("< Fermer")
+            } else {
+                setLabel("Ouvrir >");
+            }
         }, 500);
 
         return () => clearTimeout(timer);
-    }, [isOpen]);
+    }, [isOpen, setSelectedIndex, setSelectedPokemon]);
 
     return (
         <div className={`panel-right-wrapper ${bookState}`}>
@@ -35,7 +56,7 @@ export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
                     <div className="bottom-texture"></div>
                 </div>
                 <div className="panel right inner" >
-                    <p className={`description screen ${selectedPokemon ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.description : ""}</p>
+                    <p className={`description screen ${selectedPokemon ? "active" : ""} ${isBootingUp ? "flashing" : ""}`}>{selectedPokemon ? selectedPokemon.description : ""}</p>
                     <div className="blue">
                         {Array.from({ length: 10 }).map((_, i) => (
                             <button key={i} className={`button-${i}`}></button>
@@ -51,12 +72,12 @@ export default function RightPanel({ isOpen, setIsOpen, selectedPokemon }) {
                                 <div className="black-thingy"></div>
                                 <div className="black-thingy"></div>
                             </div>
-                            <div className="yellow-button"></div>
+                            <div className={`yellow-light ${isBootingUp || isCrying ? "flashing" : ""}`}></div>
                         </div>
                     </div>
                     <div className="type-wrapper">
-                        <p className={`type screen ${selectedPokemon ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.type1 : ""}</p>
-                        <p className={`type screen ${selectedPokemon && selectedPokemon.type2 ? "active" : ""}`}>{selectedPokemon ? selectedPokemon.type2 : ""}</p>
+                        <p className={`type screen ${selectedPokemon ? "active" : ""} ${isBootingUp ? "flashing" : ""}`}>{selectedPokemon ? selectedPokemon.type1 : ""}</p>
+                        <p className={`type screen ${selectedPokemon && selectedPokemon.type2 ? "active" : ""} ${isBootingUp ? "flashing" : ""}`}>{selectedPokemon ? selectedPokemon.type2 : ""}</p>
                     </div>
                 </div>
             </div>
