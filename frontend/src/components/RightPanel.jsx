@@ -6,6 +6,7 @@ export default function RightPanel({ isOpen, setIsOpen, isBootingUp, setIsBootin
     const [labelState, setLabelState] = useState("closed");
     const [label, setLabel] = useState("Ouvrir >");
 
+    // Boot up when opening | Reset when closing
     const toggleOpen = () => {
         const newIsOpen = !isOpen;
         setIsOpen(newIsOpen);

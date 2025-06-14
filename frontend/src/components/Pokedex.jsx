@@ -43,20 +43,6 @@ export default function Pokedex() {
             .catch(err => console.error("Failed to load Pokémon:", err));
     }, [setSelectedPokemon]);
 
-
-    useEffect(() => {
-        const handleKeyDown = (event) => {
-            if (event.key === "Enter") {
-                handlePokemonSelection(selectedIndex + 1);
-            } else if (event.key === "Escape") {
-                setSelectedPokemon(null);
-            }
-        };
-
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [selectedIndex, handlePokemonSelection, setSelectedPokemon]);
-
     return (
         <div className={`pokedex ${isRightOpen ? "open" : "closed"}`}>
             <LeftPanel isOpen={isRightOpen} isBootingUp={isBootingUp} isCrying={isCrying} pokemonList={pokemonList} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} selectedPokemon={selectedPokemon} setSelectedPokemon={setSelectedPokemon} handlePokemonSelection={handlePokemonSelection} />

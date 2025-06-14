@@ -1,13 +1,13 @@
 {
   "name": "pokedex-backend",
   "version": "1.0.0",
-  "description": "Backend server for the Pokedex app",
+  "description": "Backend server for my Pokédex app",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "S. Guerra",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.5.0",

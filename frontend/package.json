@@ -1,8 +1,8 @@
 {
   "name": "pokedex-frontend",
   "private": true,
-  "version": "0.0.0",
-  "description": "Frontend for my Pokedex app",
+  "version": "1.0.0",
+  "description": "Frontend for my Pokédex app",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "keywords": [],
-  "author": "",
+  "author": "S. Guerra",
   "license": "MIT",
   "dependencies": {
     "react": "^19.1.0",

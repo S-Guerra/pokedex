@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react"
 import DisplayScreen from "./DisplayScreen.jsx"
 
 // Visual/functional layout of the left side
@@ -9,14 +9,7 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
     const leftRef = useRef(null);
     const rightRef = useRef(null);
 
-    const keyToRefMap = {
-        ArrowUp: upRef,
-        ArrowDown: downRef,
-        ArrowLeft: leftRef,
-        ArrowRight: rightRef,
-    };
-
-    // To make mouse navigation smoother
+    // Makes mouse navigation smoother - menu scroll on mouse hold
     const holdTimeout = useRef(null);
     const holdInterval = useRef(null);
 
@@ -35,6 +28,39 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
         holdTimeout.current = null;
         holdInterval.current = null;
     };
+
+    // Prevents spam by holding arrow key when Pokémon selected 
+    // const keysPressed = new Set();
+
+    // const handleKeyDown = (event) => {
+    //     const ref = keyToRefMap[event.key];
+
+    //     if (!ref) return;
+
+    //     // ????? Prevent default behavior (e.g., page scroll)
+    //     event.preventDefault();
+
+    //     // Only handle key once per press
+    //     if (!keysPressed.has(event.key)) {
+    //         keysPressed.add(event.key);
+    //         ref.current?.dispatchEvent(
+    //             new MouseEvent("mousedown", { bubbles: true, cancelable: true })
+    //         );
+    //     }
+    // };
+
+    // const handleKeyUp = (event) => {
+    //     const ref = keyToRefMap[event.key];
+
+    //     if (ref) {
+    //         event.preventDefault();
+    //         keysPressed.delete(event.key);
+    //         ref.current?.dispatchEvent(
+    //             new MouseEvent("mouseup", { bubbles: true, cancelable: true })
+    //         );
+    //     }
+    // };
+
 
     const handlePad = (event, key) => {
         event.currentTarget.blur();
@@ -60,24 +86,58 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
         }
     }
 
+    // Keyboard controls
+    const keysPressedRef = useRef(new Set());
+
     useEffect(() => {
+        const keyToRefMap = {
+            ArrowUp: upRef,
+            ArrowDown: downRef,
+            ArrowLeft: leftRef,
+            ArrowRight: rightRef
+        };
+
         const handleKeyDown = (event) => {
             const ref = keyToRefMap[event.key];
-            if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
-                console.log("Yoooo")
-                event.preventDefault();
+            const keysPressed = keysPressedRef.current;
+
+            if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && selectedPokemon && keysPressed.has(event.key)) {
+                return;
+            }
+
+            if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && selectedPokemon) {
+                keysPressed.add(event.key);
             }
 
             if (ref?.current) {
+                event.preventDefault();
                 ref.current.click();
+            } else if (event.key === "Enter" && !selectedPokemon) {
+                handlePokemonSelection(selectedIndex + 1);
+            } else if (event.key === "Escape" && selectedPokemon) {
+                setSelectedPokemon(null);
+            }
+        };
+
+        const handleKeyUp = (event) => {
+            if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && selectedPokemon) {
+                keysPressedRef.current.delete(event.key);
             }
         };
 
         window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    });
+        window.addEventListener("keyup", handleKeyUp);
 
-    const handleBack = () => setSelectedPokemon(null);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("keyup", handleKeyUp);
+        };
+    }, [selectedIndex, selectedPokemon, setSelectedPokemon, handlePokemonSelection]);
+
+    const handleBack = () => {
+        setSelectedPokemon(null);
+        menuBip.play().catch((err) => console.log("Audio error:", err));
+    }
 
     return (
         <div className={`panel left ${isOpen ? "open" : "closed"}`}>
