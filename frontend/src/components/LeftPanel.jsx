@@ -29,39 +29,6 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
         holdInterval.current = null;
     };
 
-    // Prevents spam by holding arrow key when Pokémon selected 
-    // const keysPressed = new Set();
-
-    // const handleKeyDown = (event) => {
-    //     const ref = keyToRefMap[event.key];
-
-    //     if (!ref) return;
-
-    //     // ????? Prevent default behavior (e.g., page scroll)
-    //     event.preventDefault();
-
-    //     // Only handle key once per press
-    //     if (!keysPressed.has(event.key)) {
-    //         keysPressed.add(event.key);
-    //         ref.current?.dispatchEvent(
-    //             new MouseEvent("mousedown", { bubbles: true, cancelable: true })
-    //         );
-    //     }
-    // };
-
-    // const handleKeyUp = (event) => {
-    //     const ref = keyToRefMap[event.key];
-
-    //     if (ref) {
-    //         event.preventDefault();
-    //         keysPressed.delete(event.key);
-    //         ref.current?.dispatchEvent(
-    //             new MouseEvent("mouseup", { bubbles: true, cancelable: true })
-    //         );
-    //     }
-    // };
-
-
     const handlePad = (event, key) => {
         event.currentTarget.blur();
 
