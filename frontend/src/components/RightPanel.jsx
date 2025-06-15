@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import SimpleBar from "simplebar-react";
+import "simplebar-react/dist/simplebar.min.css";
 
 export default function RightPanel({ isOpen, setIsOpen, isBootingUp, setIsBootingUp, isCrying, selectedPokemon, setSelectedPokemon, setSelectedIndex }) {
     const bootUp = new Audio("https://static.wikia.nocookie.net/soundeffects/images/d/de/SFX_TURN_ON_PC.wav");
@@ -57,7 +59,9 @@ export default function RightPanel({ isOpen, setIsOpen, isBootingUp, setIsBootin
                     <div className="bottom-texture"></div>
                 </div>
                 <div className="panel right inner" >
-                    <p className={`description screen ${selectedPokemon ? "active" : ""} ${isBootingUp ? "flashing" : ""}`}>{selectedPokemon ? selectedPokemon.description : ""}</p>
+                    <SimpleBar forceVisible="y" autoHide={false} style={{ width: 244, height: 64 }} className={`description screen ${selectedPokemon ? "active" : ""} ${isBootingUp ? "flashing" : ""}`}>
+                        {selectedPokemon ? selectedPokemon.description : ""}
+                    </SimpleBar>
                     <div className="blue">
                         {Array.from({ length: 10 }).map((_, i) => (
                             <button key={i} className={`button-${i}`}></button>

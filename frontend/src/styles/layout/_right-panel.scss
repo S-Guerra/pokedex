@@ -121,11 +121,15 @@
                     inset 0 -7px 7px -7px $dark-filter-light;
 
                 .description {
-                    width: 244px;
-                    height: 64px;
+                    margin-bottom: 10px;
                     font-size: 8px;
                     text-align: left;
                     overflow-y: auto;
+
+                    .simplebar-scrollbar::before {
+                        background-color: $display-screen-inactive;
+                        opacity: 0.9;
+                    }
                 }
 
                 .blue {

@@ -16,7 +16,9 @@
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "sass": "^1.88.0"
+    "sass": "^1.88.0",
+    "simplebar": "^6.3.1",
+    "simplebar-react": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
