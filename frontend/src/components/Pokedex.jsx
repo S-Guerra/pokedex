@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react"
-import LeftPanel from "./LeftPanel.jsx"
-import RightPanel from "./RightPanel.jsx"
+import React, { useState, useEffect, useCallback } from "react";
+import LeftPanel from "./LeftPanel.jsx";
+import RightPanel from "./RightPanel.jsx";
 
 // Top level container(left + right panels)
 export default function Pokedex() {

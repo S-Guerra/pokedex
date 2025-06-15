@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react"
-import DisplayScreen from "./DisplayScreen.jsx"
+import React, { useEffect, useRef, useCallback } from "react";
+import DisplayScreen from "./DisplayScreen.jsx";
 
 // Visual/functional layout of the left side
 export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, selectedIndex, setSelectedIndex, selectedPokemon, setSelectedPokemon, handlePokemonSelection }) {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const menuBip = new Audio("https://static.wikia.nocookie.net/soundeffects/images/f/f4/SFX_PRESS_AB.wav");
     const upRef = useRef(null);
     const downRef = useRef(null);
@@ -53,6 +54,11 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
         }
     }
 
+    const handleBack = useCallback(() => {
+        setSelectedPokemon(null);
+        menuBip.play().catch((err) => console.log("Audio error:", err));
+    }, [menuBip, setSelectedPokemon]);
+
     // Keyboard controls
     const keysPressedRef = useRef(new Set());
 
@@ -82,7 +88,7 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
             } else if (event.key === "Enter" && !selectedPokemon) {
                 handlePokemonSelection(selectedIndex + 1);
             } else if (event.key === "Escape" && selectedPokemon) {
-                setSelectedPokemon(null);
+                handleBack();
             }
         };
 
@@ -99,12 +105,7 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
             window.removeEventListener("keydown", handleKeyDown);
             window.removeEventListener("keyup", handleKeyUp);
         };
-    }, [selectedIndex, selectedPokemon, setSelectedPokemon, handlePokemonSelection]);
-
-    const handleBack = () => {
-        setSelectedPokemon(null);
-        menuBip.play().catch((err) => console.log("Audio error:", err));
-    }
+    }, [selectedIndex, selectedPokemon, setSelectedPokemon, handlePokemonSelection, handleBack]);
 
     return (
         <div className={`panel left ${isOpen ? "open" : "closed"}`}>
@@ -132,7 +133,7 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
                 <div className="control-panel">
                     <button className="black-button" onClick={(e) => {
                         e.currentTarget.blur();
-                        selectedPokemon ? handleBack() : handlePokemonSelection(selectedIndex + 1)
+                        selectedPokemon ? handleBack() : handlePokemonSelection(selectedIndex + 1);
                     }}>A</button>
                     <div className="middle">
                         <div className="thingies">
