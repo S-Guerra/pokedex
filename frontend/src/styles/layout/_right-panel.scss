@@ -79,7 +79,7 @@
 
             &.outer {
                 cursor: pointer;
-                box-shadow: inset -4px 0 6px -2px $red-glowest;
+                box-shadow: inset -4px 0 6px -2px $red-lightest;
 
                 .yellow-arrow {
                     position: relative;
@@ -87,10 +87,9 @@
                     left: 240px;
                     width: 0;
                     height: 0;
-                    border-top: 20px solid transparent;
-                    border-right: 20px solid transparent;
-                    border-bottom: 20px solid transparent;
-                    border-left: 20px solid $yellow-main;
+                    border-width: 20px;
+                    border-style: solid;
+                    border-color: transparent transparent transparent $yellow-main;
                 }
 
                 .bottom-texture {
@@ -109,16 +108,15 @@
             &.inner {
                 position: absolute;
                 top: 122px;
-                z-index: 1;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                transition-property: z-index;
-                transition-delay: 0.5s;
                 box-shadow:
                     0 8px 8px -8px $dark-filter-light,
                     inset -7px 0 7px -7px $red-dark,
                     inset 0 -7px 7px -7px $dark-filter-light;
+                z-index: 1;
+                transition: z-index 0s 0.5s;
 
                 .description {
                     margin-bottom: 10px;
@@ -142,8 +140,6 @@
                         position: relative;
                         width: 50px;
                         height: 35px;
-                        border: none;
-                        color: $black;
                         background-color: $blue-main;
                         transition: all 0.1s ease;
 
@@ -199,7 +195,6 @@
                         .white-button {
                             width: 50px;
                             height: 35px;
-                            border: none;
                             background-color: $gray-light;
                             box-shadow:
                                 inset 1px 1px 1px $light-filter-heaviest,
@@ -310,17 +305,13 @@
     .toggle {
         position: absolute;
         top: 59.5%;
-        right: -122px;
+        right: -132px;
         padding: 12px;
         border: none;
-        color: $black;
         background-color: transparent;
-        font-family: "Press Start 2P", system-ui;
-        letter-spacing: -1px;
         cursor: pointer;
         transform: rotateY(0deg);
-        transition-property: transform;
-        transition-delay: 0.5s;
+        transition: transform 0s 0.5s;
 
         &.closed {
             transform: rotateY(180deg);

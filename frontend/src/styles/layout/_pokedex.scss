@@ -3,7 +3,7 @@
 @use "../utilities/animations" as *;
 
 :root {
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: "Press Start 2P", system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
 
@@ -14,6 +14,14 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    font-family: inherit;
+
+    button {
+        border: none;
+    }
 }
 
 body {
@@ -30,7 +38,6 @@ body {
     display: flex;
     transform: translateX(0);
     transition: transform 1s ease-in-out;
-    font-family: "Press Start 2P", system-ui;
     text-shadow:
         0 1px 0 $dark-filter-light,
         1px 0 0 $dark-filter-light;

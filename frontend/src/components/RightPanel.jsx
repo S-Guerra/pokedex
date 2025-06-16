@@ -74,8 +74,8 @@ export default function RightPanel({ isOpen, setIsOpen, isBootingUp, setIsBootin
                         </div>
                         <div className="yellow-section-wrapper right">
                             <div className="black-thingy-wrapper">
-                                <div className="black-thingy"></div>
-                                <div className="black-thingy"></div>
+                                <button className="black-thingy"></button>
+                                <button className="black-thingy"></button>
                             </div>
                             <div className={`yellow-light ${isBootingUp || isCrying ? "flashing" : ""}`}></div>
                         </div>
