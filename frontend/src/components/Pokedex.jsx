@@ -12,7 +12,7 @@ export default function Pokedex() {
     const [selectedPokemon, setSelectedPokemon] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/pokemon/all")
+        fetch("https://pclmhd5fh4.execute-api.eu-west-3.amazonaws.com/api/pokemon/all")
             .then(res => res.json())
             .then(data => {
                 setPokemonList(data);
@@ -22,7 +22,7 @@ export default function Pokedex() {
     }, []);
 
     const handlePokemonSelection = useCallback(async (index) => {
-        fetch(`http://localhost:3001/api/pokemon/${index}`)
+        fetch(`https://pclmhd5fh4.execute-api.eu-west-3.amazonaws.com/api/pokemon/${index}`)
             .then(res => res.json())
             .then(data => {
                 setSelectedPokemon(data);
