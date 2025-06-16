@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 
 export default function DisplayScreen({ pokemonList, selectedIndex, selectedPokemon, isOpen, isBootingUp }) {
+    // Pokémon list display logic
     const visibleCount = 7;
     const half = Math.floor(visibleCount / 2);
     const start = Math.min(Math.max(0, selectedIndex - half), pokemonList.length - visibleCount);
     const end = Math.min(pokemonList.length, start + visibleCount);
     const visiblePokemon = pokemonList.slice(start, end);
 
+    // Limits flashing animation duration
     const [delayDone, setDelayDone] = useState(false);
-
     useEffect(() => {
         let timer;
         if (isOpen) {

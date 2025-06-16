@@ -30,6 +30,7 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
         holdInterval.current = null;
     };
 
+    // D pad controls
     const handlePad = (event, key) => {
         event.currentTarget.blur();
 
@@ -54,6 +55,7 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
         }
     }
 
+    // Go back to selection menu
     const handleBack = useCallback(() => {
         setSelectedPokemon(null);
         menuBip.play().catch((err) => console.log("Audio error:", err));
