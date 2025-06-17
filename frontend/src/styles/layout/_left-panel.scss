@@ -1,6 +1,7 @@
 @use "../utilities/variables" as *;
 @use "../utilities/mixins" as *;
 @use "../utilities/animations" as *;
+@use "sass:list";
 
 .panel.left {
     position: relative;
@@ -87,10 +88,10 @@
 
                 @each $key, $shades in $colors {
                     &.#{$key} {
-                        background: radial-gradient(circle at 30% 30%, $white 0%, nth($shades, 1) 25%, nth($shades, 2) 60%, nth($shades, 3) 100%);
+                        background: radial-gradient(circle at 30% 30%, $white 0%, list.nth($shades, 1) 25%, list.nth($shades, 2) 60%, list.nth($shades, 3) 100%);
 
                         &.flashing {
-                            @include flashing(nth($shades, 1));
+                            @include flashing(list.nth($shades, 1));
                         }
                     }
                 }

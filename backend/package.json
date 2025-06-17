@@ -6,7 +6,13 @@
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": [],
+  "keywords": [
+    "nodejs",
+    "express",
+    "rest-api",
+    "postgresql",
+    "pokedex"
+  ],
   "author": "S. Guerra",
   "license": "MIT",
   "dependencies": {

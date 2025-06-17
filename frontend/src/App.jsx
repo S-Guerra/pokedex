@@ -2,7 +2,10 @@ import Pokedex from "./components/Pokedex.jsx"
 
 function App() {
   return (
-    <Pokedex />
+    <>
+      <Pokedex />
+      <p className="credits">S. Guerra - 2025</p>
+    </>
   )
 }
 

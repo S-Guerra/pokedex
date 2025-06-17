@@ -1,6 +1,5 @@
 {
   "name": "pokedex-frontend",
-  "private": true,
   "version": "1.0.0",
   "description": "Frontend for my Pokédex app",
   "type": "module",
@@ -10,7 +9,13 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "scss",
+    "pokedex",
+    "animations",
+    "sound-effects"
+  ],
   "author": "S. Guerra",
   "license": "MIT",
   "dependencies": {
