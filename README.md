@@ -1,4 +1,4 @@
-# Pokedex App
+# Pokédex App
 
 🌐 **Try it [here](https://main.djuo9j7s2awlb.amplifyapp.com/)**
 
@@ -6,7 +6,7 @@
 
 ## About
 
-This Pokedex App is a faithful recreation of the classic Pokémon Pokédex experience.  
+This Pokédex App is a faithful recreation of the classic Pokémon Pokédex experience.  
 Browse through Pokémon, view detailed information and descriptions, and enjoy authentic sound effects like boot-up sounds and Pokémon cries. The interface is designed to resemble the original device with smooth keyboard and mouse navigation.
 
 The app fetches Pokémon data from a **Neon Postgres database**, served by a **Node.js** backend using **Express**. The frontend is built with **React**, styled with **Sass**, and uses **SimpleBar** for custom scrollbars.
