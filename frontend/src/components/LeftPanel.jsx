@@ -82,8 +82,6 @@ export default function LeftPanel() {
     }, [menuBip, setSelectedPokemon]);
 
     // Keyboard controls
-    const keysPressedRef = useRef(new Set());
-
     useEffect(() => {
         const keyToRefMap = {
             ArrowUp: upRef,
@@ -92,9 +90,8 @@ export default function LeftPanel() {
             ArrowRight: rightRef
         };
 
-        const handleKeyDown = (event) => {
+        const handleKeyPress = (event) => {
             const ref = keyToRefMap[event.key];
-            // const keysPressed = keysPressedRef.current;
 
             if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && selectedPokemon && event.repeat) {
                 return;
@@ -110,20 +107,12 @@ export default function LeftPanel() {
             }
         };
 
-        const handleKeyUp = (event) => {
-            if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && selectedPokemon) {
-                keysPressedRef.current.delete(event.key);
-            }
-        };
-
-        window.addEventListener("keydown", handleKeyDown);
-        window.addEventListener("keyup", handleKeyUp);
+        window.addEventListener("keyup", handleKeyPress);
 
         return () => {
-            window.removeEventListener("keydown", handleKeyDown);
-            window.removeEventListener("keyup", handleKeyUp);
+            window.removeEventListener("keyup", handleKeyPress);
         };
-    }, [selectedIndex, selectedPokemon, setSelectedPokemon, handlePokemonSelection, handleBack]);
+    }, [selectedIndex, selectedPokemon, handlePokemonSelection, handleBack]);
 
     return (
         <div className={`panel left ${isOpen ? "open" : "closed"}`}>

@@ -17,7 +17,6 @@ export default function Pokedex() {
             .then(res => res.json())
             .then(data => {
                 setPokemonList(data);
-                console.log("Fetched Pokémon list:", data);
             })
             .catch(err => console.error("Failed to load Pokémon list:", err));
     }, []);
@@ -27,7 +26,6 @@ export default function Pokedex() {
             .then(res => res.json())
             .then(data => {
                 setSelectedPokemon(data);
-                console.log("Fetched Pokémon:", data);
 
                 const audio = new Audio(data.cry_url);
                 // Wait for metadata to load so duration is available
