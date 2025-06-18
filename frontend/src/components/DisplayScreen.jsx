@@ -1,18 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { usePokedex } from "../context/PokedexContext";
 
-export default function DisplayScreen({ pokemonList, selectedIndex, selectedPokemon, isOpen, isBootingUp }) {
+export default function DisplayScreen() {
+    const { pokemonList, selectedIndex, selectedPokemon, isRightOpen, isBootingUp } = usePokedex();
+
     // Pokémon list display logic
     const visibleCount = 7;
     const half = Math.floor(visibleCount / 2);
-    const start = Math.min(Math.max(0, selectedIndex - half), pokemonList.length - visibleCount);
-    const end = Math.min(pokemonList.length, start + visibleCount);
-    const visiblePokemon = pokemonList.slice(start, end);
+    const { start, visiblePokemon } = useMemo(() => {
+        const listLength = pokemonList?.length || 0;
+        const start = Math.min(Math.max(0, selectedIndex - half), Math.max(0, listLength - visibleCount));
+        const end = Math.min(listLength, start + visibleCount);
+        return {
+            start: start,
+            visiblePokemon: pokemonList?.slice(start, end) || []
+        }
+    }, [half, pokemonList, selectedIndex])
 
     // Limits flashing animation duration
     const [delayDone, setDelayDone] = useState(false);
     useEffect(() => {
         let timer;
-        if (isOpen) {
+        if (isRightOpen) {
             setDelayDone(false);
             timer = setTimeout(() => {
                 setDelayDone(true);
@@ -21,7 +30,7 @@ export default function DisplayScreen({ pokemonList, selectedIndex, selectedPoke
             setDelayDone(false);
         }
         return () => clearTimeout(timer);
-    }, [isOpen]);
+    }, [isRightOpen]);
 
     return (
         <div className="display">
@@ -29,10 +38,10 @@ export default function DisplayScreen({ pokemonList, selectedIndex, selectedPoke
                 <div className="display-light"></div>
                 <div className="display-light"></div>
             </div>
-            {!isOpen || !delayDone ?
+            {!isRightOpen || !delayDone ?
                 (<div className={`display-screen ${isBootingUp ? "flashing" : ""}`}></div>) :
                 (selectedPokemon ?
-                    (<div className="display-screen active sprite"><img src={selectedPokemon.picture_url} alt={selectedPokemon.name}></img></div>) :
+                    (<div className="display-screen active sprite"><img src={selectedPokemon.picture_url} alt={selectedPokemon.name || "Pokemon sprite"}></img></div>) :
                     (
                         <ul className="display-screen active list">
                             {visiblePokemon.map((pokemon, idx) => {

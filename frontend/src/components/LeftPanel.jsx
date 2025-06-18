@@ -1,14 +1,19 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import DisplayScreen from "./DisplayScreen.jsx";
+import { usePokedex } from "../context/PokedexContext";
 
 // Visual/functional layout of the left side
-export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, selectedIndex, setSelectedIndex, selectedPokemon, setSelectedPokemon, handlePokemonSelection }) {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const menuBip = new Audio("https://static.wikia.nocookie.net/soundeffects/images/f/f4/SFX_PRESS_AB.wav");
+export default function LeftPanel() {
+    const { isOpen, isBootingUp, isCrying, selectedPokemon, setSelectedPokemon, pokemonList, selectedIndex, setSelectedIndex, handlePokemonSelection } = usePokedex();
     const upRef = useRef(null);
     const downRef = useRef(null);
     const leftRef = useRef(null);
     const rightRef = useRef(null);
+    const menuBip = useRef(null);
+
+    useEffect(() => {
+        menuBip.current = new Audio("https://static.wikia.nocookie.net/soundeffects/images/f/f4/SFX_PRESS_AB.wav");
+    }, []);
 
     // Makes mouse navigation smoother - menu scroll on mouse hold
     const holdTimeout = useRef(null);
@@ -35,21 +40,33 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
         event.currentTarget.blur();
 
         if (key === "ArrowUp" && !selectedPokemon) {
-            setSelectedIndex(i => Math.max(0, i - 1));
-            menuBip.play().catch((err) => console.log("Audio error:", err));
+            setSelectedIndex(i => {
+                const newIndex = Math.max(0, i - 1);
+                if (i !== newIndex && menuBip.current) {
+                    menuBip.current.currentTime = 0;
+                    menuBip.current.play().catch(err => console.log("Audio error:", err));
+                }
+                return newIndex;
+            });
         } else if (key === "ArrowRight" && selectedPokemon) {
             setSelectedIndex(i => {
                 const newIndex = Math.min(pokemonList.length - 1, i + 1);
-                handlePokemonSelection(newIndex + 1);
+                if (i !== newIndex) handlePokemonSelection(newIndex + 1);
                 return newIndex;
             });
         } else if (key === "ArrowDown" && !selectedPokemon) {
-            setSelectedIndex(i => Math.min(pokemonList.length - 1, i + 1));
-            menuBip.play().catch((err) => console.log("Audio error:", err));
+            setSelectedIndex(i => {
+                const newIndex = Math.min(pokemonList.length - 1, i + 1);
+                if (i !== newIndex && menuBip.current) {
+                    menuBip.current.currentTime = 0;
+                    menuBip.current.play().catch(err => console.log("Audio error:", err));
+                }
+                return newIndex;
+            });
         } else if (key === "ArrowLeft" && selectedPokemon) {
             setSelectedIndex(i => {
                 const newIndex = Math.max(0, i - 1);
-                handlePokemonSelection(newIndex + 1);
+                if (i !== newIndex) handlePokemonSelection(newIndex + 1);
                 return newIndex;
             });
         }
@@ -58,7 +75,10 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
     // Go back to selection menu
     const handleBack = useCallback(() => {
         setSelectedPokemon(null);
-        menuBip.play().catch((err) => console.log("Audio error:", err));
+        if (menuBip.current) {
+            menuBip.current.currentTime = 0;
+            menuBip.current.play().catch(err => console.log("Audio error:", err));
+        }
     }, [menuBip, setSelectedPokemon]);
 
     // Keyboard controls
@@ -74,14 +94,10 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
 
         const handleKeyDown = (event) => {
             const ref = keyToRefMap[event.key];
-            const keysPressed = keysPressedRef.current;
+            // const keysPressed = keysPressedRef.current;
 
-            if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && selectedPokemon && keysPressed.has(event.key)) {
+            if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && selectedPokemon && event.repeat) {
                 return;
-            }
-
-            if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && selectedPokemon) {
-                keysPressed.add(event.key);
             }
 
             if (ref?.current) {
@@ -131,7 +147,7 @@ export default function LeftPanel({ isOpen, isBootingUp, isCrying, pokemonList, 
                 </div>
             </div>
             <div className="content">
-                <DisplayScreen pokemonList={pokemonList} selectedIndex={selectedIndex} selectedPokemon={selectedPokemon} isOpen={isOpen} isBootingUp={isBootingUp} />
+                <DisplayScreen />
                 <div className="control-panel">
                     <button className="black-button" onClick={(e) => {
                         e.currentTarget.blur();

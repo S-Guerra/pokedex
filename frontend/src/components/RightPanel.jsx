@@ -1,41 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { usePokedex } from "../context/PokedexContext";
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 
-export default function RightPanel({ isOpen, setIsOpen, isBootingUp, setIsBootingUp, isCrying, selectedPokemon, setSelectedPokemon, setSelectedIndex }) {
-    const bootUp = new Audio("https://static.wikia.nocookie.net/soundeffects/images/d/de/SFX_TURN_ON_PC.wav");
+export default function RightPanel() {
+    const bootUp = useRef(new Audio("https://static.wikia.nocookie.net/soundeffects/images/d/de/SFX_TURN_ON_PC.wav"));
     const [bookState, setBookState] = useState("");
     const [labelState, setLabelState] = useState("closed");
     const [label, setLabel] = useState("Ouvrir >");
+    const { isRightOpen, setIsRightOpen, isBootingUp, setIsBootingUp, isCrying, selectedPokemon, setSelectedPokemon, setSelectedIndex } = usePokedex();
 
     // Boot up when opening | Reset when closing
-    const toggleOpen = () => {
-        const newIsOpen = !isOpen;
-        setIsOpen(newIsOpen);
-
-        if (newIsOpen) {
-            setBookState("open");
-            setLabelState("open");
+    const openPanel = () => {
+        setIsRightOpen(true);
+        setBookState("open");
+        setLabelState("open");
+        setTimeout(() => {
+            setIsBootingUp(true);
+            bootUp.current.play().catch(err => console.log("Audio error:", err));
             setTimeout(() => {
-                setIsBootingUp(true);
-                bootUp.play().catch((err) => console.log("Audio error:", err));
-                setTimeout(() => {
-                    setIsBootingUp(false);
-                }, 1000);
-            }, 500);
-        } else {
-            setSelectedPokemon(null);
-            setSelectedIndex(0);
-            setBookState("closed");
-            setLabelState("closed");
-            setIsBootingUp(false);
-        }
+                setIsBootingUp(false);
+            }, 1000);
+        }, 500);
+    };
+
+    const closePanel = () => {
+        setIsRightOpen(false);
+        setBookState("closed");
+        setLabelState("closed");
+        setSelectedPokemon(null);
+        setSelectedIndex(0);
+        setIsBootingUp(false);
+    };
+
+    const toggleOpen = () => {
+        isRightOpen ? closePanel() : openPanel();
     };
 
     // Toggles label open/close
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (isOpen) {
+            if (isRightOpen) {
                 setLabel("< Fermer")
             } else {
                 setLabel("Ouvrir >");
@@ -43,7 +48,7 @@ export default function RightPanel({ isOpen, setIsOpen, isBootingUp, setIsBootin
         }, 500);
 
         return () => clearTimeout(timer);
-    }, [isOpen, setSelectedIndex, setSelectedPokemon]);
+    }, [isRightOpen]);
 
     return (
         <div className={`panel-right-wrapper ${bookState}`}>
