@@ -62,9 +62,24 @@ body {
     }
 }
 
-.credits {
+.credits,
+.github {
     position: absolute;
     bottom: 0;
-    right: 2em;
     color: $black;
+    font-size: 0.6em;
+}
+
+.github {
+    margin: 1em;
+    right: 50%;
+    transform: translateX(50%);
+
+    img {
+        vertical-align: middle;
+    }
+}
+
+.credits {
+    right: 2em;
 }
