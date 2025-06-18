@@ -5,15 +5,11 @@ import { usePokedex } from "../context/PokedexContext";
 // Visual/functional layout of the left side
 export default function LeftPanel() {
     const { isOpen, isBootingUp, isCrying, selectedPokemon, setSelectedPokemon, pokemonList, selectedIndex, setSelectedIndex, handlePokemonSelection } = usePokedex();
+    const menuBip = useRef(new Audio("https://static.wikia.nocookie.net/soundeffects/images/f/f4/SFX_PRESS_AB.wav"));
     const upRef = useRef(null);
     const downRef = useRef(null);
     const leftRef = useRef(null);
     const rightRef = useRef(null);
-    const menuBip = useRef(null);
-
-    useEffect(() => {
-        menuBip.current = new Audio("https://static.wikia.nocookie.net/soundeffects/images/f/f4/SFX_PRESS_AB.wav");
-    }, []);
 
     // Makes mouse navigation smoother - menu scroll on mouse hold
     const holdTimeout = useRef(null);
@@ -42,7 +38,7 @@ export default function LeftPanel() {
         if (key === "ArrowUp" && !selectedPokemon) {
             setSelectedIndex(i => {
                 const newIndex = Math.max(0, i - 1);
-                if (i !== newIndex && menuBip.current) {
+                if (i !== newIndex) {
                     menuBip.current.currentTime = 0;
                     menuBip.current.play().catch(err => console.log("Audio error:", err));
                 }
@@ -57,7 +53,7 @@ export default function LeftPanel() {
         } else if (key === "ArrowDown" && !selectedPokemon) {
             setSelectedIndex(i => {
                 const newIndex = Math.min(pokemonList.length - 1, i + 1);
-                if (i !== newIndex && menuBip.current) {
+                if (i !== newIndex) {
                     menuBip.current.currentTime = 0;
                     menuBip.current.play().catch(err => console.log("Audio error:", err));
                 }
@@ -107,10 +103,10 @@ export default function LeftPanel() {
             }
         };
 
-        window.addEventListener("keyup", handleKeyPress);
+        window.addEventListener("keydown", handleKeyPress);
 
         return () => {
-            window.removeEventListener("keyup", handleKeyPress);
+            window.removeEventListener("keydown", handleKeyPress);
         };
     }, [selectedIndex, selectedPokemon, handlePokemonSelection, handleBack]);
 
