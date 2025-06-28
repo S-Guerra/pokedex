@@ -15,26 +15,13 @@ export default function App() {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  if (isSmallScreen) {
-    return (
-      <>
-        <div style={{ padding: "2rem", textAlign: "center" }}>
-          <h2>Oops! This app works best on bigger screens. Try resizing your window or switching to a desktop.</h2>
-        </div>
-        <a className="github" href="https://github.com/S-Guerra/pokedex">
-          <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white&style=flat" alt="GitHub Badge"></img>
-        </a>
-      </>
-    );
-  }
-
   return (
     <>
-      <Pokedex />
+      {isSmallScreen ? <h2 className="small-screen-text">Oops! This app works best on bigger screens. Try resizing your window or switching to a desktop.</h2> : <Pokedex />}
       <a className="github" href="https://github.com/S-Guerra/pokedex">
         <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white&style=flat" alt="GitHub Badge"></img>
       </a>
-      <p className="credits">S. Guerra - 2025</p>
+      {isSmallScreen ? "" : <p className="credits">S. Guerra - 2025</p>}
     </>
   )
 }
