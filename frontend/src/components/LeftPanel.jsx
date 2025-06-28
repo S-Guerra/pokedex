@@ -4,7 +4,7 @@ import { usePokedex } from "../context/PokedexContext";
 
 // Visual/functional layout of the left side
 export default function LeftPanel() {
-    const { isOpen, isBootingUp, isCrying, selectedPokemon, setSelectedPokemon, pokemonList, selectedIndex, setSelectedIndex, handlePokemonSelection } = usePokedex();
+    const { isRightOpen, isBootingUp, isCrying, selectedPokemon, setSelectedPokemon, pokemonList, selectedIndex, setSelectedIndex, handlePokemonSelection } = usePokedex();
     const menuBip = useRef(new Audio("https://static.wikia.nocookie.net/soundeffects/images/f/f4/SFX_PRESS_AB.wav"));
     const upRef = useRef(null);
     const downRef = useRef(null);
@@ -111,7 +111,7 @@ export default function LeftPanel() {
     }, [selectedIndex, selectedPokemon, handlePokemonSelection, handleBack]);
 
     return (
-        <div className={`panel left ${isOpen ? "open" : "closed"}`}>
+        <div className={`panel left ${isRightOpen ? "open" : "closed"}`}>
             <div className="top">
                 <div className="red left"></div>
                 <div>
