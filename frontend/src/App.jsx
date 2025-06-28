@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <>
-      {isSmallScreen ? <h2 className="small-screen-text">Oops! This app works best on bigger screens. Try resizing your window or switching to a desktop.</h2> : <Pokedex />}
+      {isSmallScreen ? <h2 className="small-screen-text">Oups ! Ce site fonctionne mieux sur un écran plus grand. Agrandissez la fenêtre ou utilisez un autre appareil.</h2> : <Pokedex />}
       <a className="github" href="https://github.com/S-Guerra/pokedex">
         <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white&style=flat" alt="GitHub Badge"></img>
       </a>
