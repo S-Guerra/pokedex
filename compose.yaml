@@ -1,0 +1,15 @@
+services:
+  frontend:
+    build:
+      context: ./app/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped
+  backend:
+    build:
+      context: ./app/backend
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
