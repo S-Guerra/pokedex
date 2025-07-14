@@ -11,9 +11,6 @@ frontend/lerna-debug.log*
 frontend/node_modules/
 **/node_modules/
 
-frontend/dist/
-**/dist/
-
 frontend/dist-ssr/
 frontend/*.local
 
