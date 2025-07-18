@@ -3,6 +3,8 @@ import LeftPanel from "./LeftPanel.jsx";
 import RightPanel from "./RightPanel.jsx";
 import { PokedexContext } from "../context/PokedexContext";
 
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 // Top level container(left + right panels)
 export default function Pokedex() {
     const [isRightOpen, setIsRightOpen] = useState(false);
@@ -13,7 +15,7 @@ export default function Pokedex() {
     const [selectedPokemon, setSelectedPokemon] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/pokemon/all")
+        fetch(`${backendURL}/api/pokemon/all`)
             .then(res => res.json())
             .then(data => {
                 setPokemonList(data);
@@ -22,7 +24,7 @@ export default function Pokedex() {
     }, []);
 
     const handlePokemonSelection = useCallback((index) => {
-        fetch(`http://localhost:3001/api/pokemon/${index}`)
+        fetch(`${backendURL}/api/pokemon/${index}`)
             .then(res => res.json())
             .then(data => {
                 setSelectedPokemon(data);
