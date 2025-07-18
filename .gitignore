@@ -1,24 +1,9 @@
-# Logs
-frontend/logs/
-frontend/*.log
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
-frontend/pnpm-debug.log*
-frontend/lerna-debug.log*
-
 # Node modules and build output
-frontend/node_modules/
 **/node_modules/
-
-frontend/dist-ssr/
-frontend/*.local
 
 # Environment files
 .env
 .env.*.local
-frontend/.env
-frontend/.env.*.local
 
 # Editor directories and files
 .vscode/
@@ -30,6 +15,3 @@ frontend/.env.*.local
 *.njsproj
 *.sln
 *.sw?
-
-py_scripts/
-data/pokemon-pictures/
