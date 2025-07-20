@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const { Pool } = require("pg");
 const app = express();
@@ -8,6 +9,10 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },
 });
+
+app.use(cors({
+    origin: "https://s-guerra.github.io"
+}));
 
 // Get id + name list
 app.get("/api/pokemon/all", async (req, res) => {
