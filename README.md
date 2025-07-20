@@ -1,6 +1,6 @@
 # Pokédex App
 
-🌐 **Try it [here](https://main.djuo9j7s2awlb.amplifyapp.com/)**
+🌐 **Try it [here](https://s-guerra.github.io/pokedex/)**
 
 ---
 
@@ -25,15 +25,14 @@ The app fetches Pokémon data from a **Neon Postgres database**, served by a **N
 
 ### 🗄️ Database
 
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)  ![Neon](https://img.shields.io/badge/Neon-1E1E2E?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDBGQ0ZGIiB2aWV3Qm94PSIwIDAgNjAgNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTMwIDYwYy0xNi42IDAtMzAtMTMuNC0zMC0zMFMxMy40IDAgMzAgMHMzMCAxMy40IDMwIDMwLTEzLjQgMzAtMzAgMzB6bTAtNTZjLTE0LjQgMC0yNiAxMS42LTI2IDI2czExLjYgMjYgMjYgMjYgMjYtMTEuNiAyNi0yNi0xMS42LTI2LTI2LTI2eiIvPjwvc3ZnPg==&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)  ![Neon](https://img.shields.io/badge/Neon-1E1E2E?style=for-the-badge&logo=data:imagesvg+xml;base64,PHN2ZyBmaWxsPSIjMDBGQ0ZGIiB2aWV3Qm94PSIwIDAgNjAgNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTMwIDYwYy0xNi42IDAtMzAtMTMuNC0zMC0zMFMxMy40IDAgMzAgMHMzMCAxMy40IDMwIDMwLTEzLjQgMzAtMzAgMzB6bTAtNTZjLTE0LjQgMC0yNiAxMS42LT2IDI2czExLjYgMjYgMjYgMjYgMjYtMTEuNiAyNi0yNi0xMS42LTI2LTI2LTI2eiIvPjwvc3ZnPg==&logoColor=white)
 
 ### 🚀 Deployment & Development Tools
 
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)  ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)  ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)  ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-121013?style=for-the-badge&logo=github&logoColor=white)![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=000000)  
 
 ---
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
